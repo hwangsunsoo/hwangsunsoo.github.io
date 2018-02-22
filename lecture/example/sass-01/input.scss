@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+.section{
+	article{
+		dl{
+			padding: 0 20px 20px;
+			background: #eee;
+		}
+		dt{
+			padding-top: 20px;
+			color: blue;
+			font-size: 16px;
+		}
+		dd{
+			color: black;
+			font-size: 14px;
+		}
+	}
+}

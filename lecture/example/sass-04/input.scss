@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+$color-basic: #0000ff;
+
+.latte{
+	color: $color-basic;
+	border: 10px solid darken($color-basic, 20%);
+
+	&:hover{
+		color: lighten($color-basic, 30%);
+		border: 10px solid darken($color-basic, 10%);
+	}
+}
+.americano{
+	background-color: rgba($color-basic, 0.3);
+}
+
+/*
+$size: 12px;
+
+.latte{
+	width: $size;
+
+	.americano{
+		width: $size;
+	}
+}
+.cappuccino{
+	width: $size;
+}
+*/
+
+/*
+.latte{
+	$size: 12px;
+
+	width: $size;
+
+	.americano{
+		width: $size;
+	}
+}
+.cappuccino{
+	width: $size;
+}
+
+/*
+.latte{
+	$size: 12px;
+
+	width: $size;
+
+	.americano{
+		width: $size;
+	}
+}
+.cappuccino{
+	$size: 10px;
+
+	width: $size;
+}
+*/
+
+$date: "20160929";
+
+.sp_land{
+	background-image:url(http://static.land.naver.net/static/mobile/#{$date}/sp_ic.png);
+}
+
+$vendors: webkit, moz, ms, o;
+
+@mixin vender-prefix($name, $value) {
+	@each $vendor in $vendors {
+		-#{$vendor}-#{$name}: $value;
+	}
+	#{$name}: $value;
+}
+
+.list_test {
+	@include vender-prefix(box-sizing, border-box);
+	@include vender-prefix(border-radius, 50%);
+}
+
+$espresso: (
+	'americano': #391919,
+	'latte': #aa9f7d,
+	'cappuccino': #887e61,
+	'macchiato': #d0b76a,
+	'mocha': #804c2a,
+);
+
+@each $name, $color in $espresso {
+	.coffee_#{$name} {
+		background-color: $color;
+	}
+}
+

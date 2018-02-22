@@ -1,0 +1,15 @@
+.section article dl {
+  padding: 0 20px 20px;
+  background: #eee; 
+}
+.section article dt {
+  padding-top: 20px;
+  color: blue;
+  font-size: 16px; 
+}
+.section article dd {
+  color: black;
+  font-size: 14px; 
+}
+
+/*# sourceMappingURL=output.css.map */

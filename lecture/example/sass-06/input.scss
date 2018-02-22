@@ -1,0 +1,103 @@
+@charset "utf-8";
+
+/*
+.americano {
+	font-size: 12px;
+	text-align: center;
+	color: #fff;
+	background-color: #453621;
+}
+.americano_ice {
+	@extend .americano;
+	background-color: #152378;
+}
+*/
+
+%water {
+	line-height: 100px;
+	font-size: 20px;
+	text-align: center;
+	color: #fff;
+}
+.americano {
+	@extend %water;
+	background-color: #453621;
+}
+.americano_ice {
+	@extend %water;
+	background-color: #152378;
+}
+
+// 태그 숨김 처리
+%blind {
+	position: absolute;
+	clip: rect(0 0 0 0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+}
+// 한 줄 말줄임 처리
+%ellipsis {
+	overflow: hidden;
+	display: block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+// float 해제
+%clearFloat {
+	zoom: 1;
+
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}
+
+.blind{ @extend %blind; }
+.hide{ @extend %blind; }
+.hidden{ @extend %blind; }
+
+.ellipsis{ @extend %ellipsis; }
+.ell{ @extend %ellipsis; }
+
+.section{
+	article{ @extend %clearFloat; }
+	h1{ @extend %clearFloat; }
+}
+
+// 오류 발생
+/*
+.latte_1 {
+    @extend .americano .espresso;
+}
+.latte_2 {
+    @extend .americano + .espresso;
+}
+*/
+
+@media screen and (min-width: 768px) {
+	.espresso {
+		background-color: #391919;
+	}
+	.latte {
+		@extend .espresso;
+
+		color: #887e61;
+	}
+}
+
+/*
+.espresso {
+	background-color: #391919;
+}
+@media print {
+	.latte {
+		@extend .espresso;
+
+		color: #887e61;
+	}
+}
+*/
+

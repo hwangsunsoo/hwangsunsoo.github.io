@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>[Sass 예제] mixin 사용</title>
+<link rel="stylesheet" type="text/css" href="../../src/css/lecture.css">
+<link rel="stylesheet" type="text/css" href="output.css">
+<style type="text/css">
+.section article:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.thumbnail,.thumbnail_rotate{
+	float: left;
+	margin-right: 10px;
+}
+.thumbnail_rotate{
+	margin-top: 40px;
+}
+.ex_param{
+	position: relative;
+	height: 200px;
+	margin-bottom: 20px;
+	background-color: #eee;
+}
+</style>
+</head>
+<body>
+
+<div id="wrap" class="wrap-lecture">
+
+	<header>
+		<h1>Sass 기초와 활용</h1>
+	</header>
+
+	<section id="section" class="section">
+
+		<article>
+
+			<h1 class="">mixin 사용 예제</h1>
+			<div class="thumbnail" style="background-image:url(../img/profile-1.jpg);"></div>
+			<div class="thumbnail" style="background-image:url(../img/profile-2.jpg);"></div>
+			<div class="thumbnail" style="background-image:url(../img/profile-3.jpg);"></div>
+
+		</article>
+
+		<article>
+
+			<h1 class="">mixin 중첩 사용 예제</h1>
+			<div class="thumbnail_rotate" style="background-image:url(../img/profile-1.jpg);"></div>
+			<div class="thumbnail_rotate" style="background-image:url(../img/profile-2.jpg);"></div>
+			<div class="thumbnail_rotate" style="background-image:url(../img/profile-3.jpg);"></div>
+
+		</article>
+
+		<article>
+
+			<h1 class="">mixin 인자 사용 예제</h1>
+			<div class="ex_param">
+				<div class="ex_box_1"></div>
+			</div>
+			<div class="ex_param">
+				<div class="ex_box_2"></div>
+			</div>
+			<div class="ex_param">
+				<div class="ex_box_3"></div>
+			</div>
+			<div class="ex_param">
+				<div class="ex_box_4"></div>
+			</div>
+
+		</article>
+
+		<article>
+
+			<h1 class="">mixin media 사용 예제</h1>
+			<div class="ex_param">
+				<div class="mixin_media"></div>
+			</div>
+
+		</article>
+
+	</section>
+	<!-- //section -->
+
+	<footer>
+		<p>사람과 사람, 오늘과 내일, 네트워크와 네트워크가 연결되는 더 큰 세상, NHN이 만들어 갑니다.</p>
+	</footer>
+
+</div>
+<!-- //wrap -->
+
+</body>
+</html>

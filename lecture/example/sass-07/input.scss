@@ -1,0 +1,219 @@
+@charset "utf-8";
+
+$espresso: 300px;
+
+.mocha {
+	background-size: ($espresso / 2) auto;
+}
+
+.cappuccino {
+	// CSS로 사용
+	font: 10px/20px;
+	// 나누기 연산자로 사용
+	font: (10em/8); // 괄호로 묶임
+	padding: 4px + 10px/2px; // 사칙 연산의 일부
+
+	$width: 1000px;
+	width: $width/2; // 변수로 저장된 값
+	bottom: floor(19px/2); // 함수: 소수점 이하 버림
+	right: ceil(19px/3); // 함수: 소수점 이하 올림
+	top: round(19px/2); // 함수: 소수점 이하 반올림
+}
+
+.macchiato {
+	$font-size: 10px;
+	$line-height: 20px;
+	font: #{$font-size}/#{$line-height};
+}
+
+/* 모두 출력 */
+.chocolate {
+	@if true {content:'첫 번째 @if true';}
+	@if true {content:'두 번째 @if true';}
+	@if true {content:'세 번째 @if true';}
+}
+/* 모두 출력 안 됨 */
+.latte {
+	@if false {content:'첫 번째 @if false';}
+	@else if false {content:'두 번째 @else if false';}
+	@else if false {content:'세 번째 @else if false';}
+}
+/* 마지막 else만 출력 */
+.mocha {
+	@if false {content:'첫 번째 @if false';}
+	@else if false {content:'두 번째 @else if false';}
+	@else {content:'세 번째 @else';}
+}
+
+@mixin ellipsis ($lines: 1) { // 인자 값의 기본 값은 1
+	@if ($lines == 1) {
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+	} @else {
+		display: -webkit-box;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		-webkit-line-clamp: $lines;
+		-webkit-box-orient: vertical;
+	}
+}
+/* 테스트 */
+.latte {
+	@include ellipsis();
+	// @include ellipsis(1);
+	// @include ellipsis; // 괄호는 생략 가능
+}
+.vanilla {
+	@include ellipsis(3);
+}
+
+
+@for $i from 1 through 50 {
+	.latte#{$i} { background-position:0 -10px * $i + 10px; }
+}
+
+.digit_area button{
+	width: 126px;
+	height: 126px;
+	background-image: url(../img/digits_square_icons.jpg);
+	@for $i from 0 through 11 {
+		&.digit_#{$i} {
+			@if $i <= 3 {
+				 background-position:(-156px * $i) 0;
+			} @else if $i <= 7 {
+				 background-position:(-156px * ($i - 4)) -144px;
+			} @else if $i <= 11 {
+				 background-position:(-156px * ($i - 8)) -287px;
+			}
+		}
+	}
+}
+
+@each $coffee in espresso, americano, latte, mocha {
+	.#{$coffee}-icon {
+		background-image: url('/images/#{$coffee}.png');
+	}
+}
+/* 리스트를 변수로 저장해서 사용해도 무관하다. */
+$coffees : espresso, americano, latte, mocha;
+@each $value in $coffees {
+	.#{$value}-icon {
+		background-image: url('/images/#{$value}.png');
+	}
+}
+
+@each $coffee, $taste, $color in (espresso, dark, #372000), (americano, mild, #6d4b1a), (latte, soft, #9f7a45), (mocha, sweet, #f3f3f3) {
+	.#{$coffee}-icon {
+		background: $color url('/images/#{$taste}.png') no-repeat 0 0;
+	}
+}
+
+$coffees : (strong: espresso, mild: americano, soft: latte, sweet: mocha);
+
+@each $key, $value in $coffees {
+	.#{$key}-icon {
+		background-image: url('/images/#{$value}.png');
+	}
+}
+
+/* map */
+$map-bus-color : #20af83;
+$map-metro-color : #73c74d;
+$map-hospital-color : #55b7ff;
+$map-medi-color : #4887ff;
+$map-parking-color : #71798d;
+$map-mart-color : #ff9558;
+$map-convenience-color : #b672f8;
+$map-washing-color : #36cadc;
+$map-beauty-color : #ff7cb0;
+$map-repair-color : #8d6e63;
+$map-bank-color : #3f498c;
+$map-office-color : #00695c;
+$map-infant-color : #ffb657;
+$map-preschool-color : #ff9558;
+$map-school-color : #f86b59;
+$map-view-color : #73c74d;
+$map-gate-color : #55b7ff;
+$map-appear-color : #ffb657;
+$map-convin-color : #b672f8;
+$map-edu-color : #f86b59;
+$map-life-color : #3f498c;
+$map-transport-color : #20af83;
+$map-etc-color : #ff7cb0;
+
+/* 지도 버튼 */
+$map-btns: (
+	bus: (color: $map-bus-color),                 // 버스정류장
+	metro: (color: $map-metro-color),             // 지하철역
+	hospital: (color: $map-hospital-color),       // 종합병원
+	medi: (color: $map-medi-color),               // 병원,약국
+	parking: (color: $map-parking-color),         // 주차장
+	mart: (color: $map-mart-color),               // 마트
+	convenience: (color: $map-convenience-color), // 편의점
+	washing: (color: $map-washing-color),         // 세탁소
+	repair: (color: $map-repair-color),           // 열쇠,구두수선
+	bank: (color: $map-bank-color),               // 은행
+	office: (color: $map-office-color),           // 관공서
+	infant: (color: $map-infant-color),           // 어린이집
+	preschool: (color: $map-preschool-color),     // 유치원
+	school: (color: $map-school-color),           // 학군
+	schoolpoi: (color: $map-school-color),        // 학교
+	beauty: (color: $map-beauty-color)            // 미용실
+);
+
+/* 주변 편의시설 */
+@each $map, $value in $map-btns {
+	.layer_btn_#{$map} {
+		background-color: map-get($value, color);
+		color: white;
+	}
+}
+
+
+/* 지하철 */
+$map-subways-bg: (
+	s1: (bg-color: #003499),   // 1호선
+	s2: (bg-color: #38b149),   // 2호선
+	s3: (bg-color: #f36f34),   // 3호선
+	s4: (bg-color: #2d9ede),   // 4호선
+	s5: (bg-color: #893bb6),   // 5호선
+	s6: (bg-color: #8f490e),   // 6호선
+	s7: (bg-color: #606d00),   // 7호선
+	s8: (bg-color: #e71e6e),   // 8호선
+	s9: (bg-color: #b6971d),   // 9호선
+	s100: (bg-color: #edb217), // 분당선
+	s101: (bg-color: #71b8e5), // 공항
+	s103: (bg-color: #6cb7b7), // 중앙
+	s104: (bg-color: #2fbc9e), // 경의
+	s107: (bg-color: #77c371), // 에버라인
+	s108: (bg-color: #26a97f), // 경춘선
+	s109: (bg-color: #a8022d), // 신분당선
+	s110: (bg-color: #ff8e00), // 의정부
+	s111: (bg-color: #edb217), // 수인선
+	s112: (bg-color: #2673f2), // 경강선
+	s22: (bg-color: #ffb95a),  // 인천2호선
+	s71: (bg-color: #fa5f2c),  // 부산,대구1호선
+	s72: (bg-color: #37b42d),  // 부산,대구2호선
+	s73: (bg-color: #bf9f1e),  // 부산,대구3호선
+	s74: (bg-color: #2d9ede),  // 부산,대구4호선
+	s51: (bg-color: #37b42d)   // 광주,대전1호선
+);
+$map-subways-bd: (
+	s21: (bd-color: #5191cf, font-color:#4489cb), // 인천1호선
+	s79: (bd-color: #893bb6, font-color:#893bb6), // 부산김해
+);
+.subway_type{
+	@each $map, $value in $map-subways-bg {
+		&--#{$map}{
+			background-color: map-get($value, bg-color);
+			color: white;
+		}
+	}
+	@each $map, $value in $map-subways-bd {
+		&--#{$map}{
+			border: 1px solid map-get($value, bd-color);
+			color: map-get($value, font-color);
+		}
+	}
+}

@@ -1,0 +1,116 @@
+@charset 'utf-8';
+
+/* Common */
+
+body.directory,
+.directory #search {
+	font-family: '-apple-system', 'BlinkMacSystemFont', 'Helvetica', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 'Dotum', '돋움', 'sans-serif';
+}
+.directory ul#files,
+.directory #info-agent{
+	font-family: 'Menlo', 'Liberation Mono', 'Consolas', 'DejaVu Sans Mono', 'Ubuntu Mono', 'Courier New', 'andale mono', 'lucida console', 'monospace';
+}
+.directory #wrapper:after{
+	display: block;
+	margin: 10px 0;
+	font-size: 11px;
+	text-align: center;
+	content: 'NHN Technology Services';
+}
+#info-agent{
+	display: none;
+}
+.directory #info-agent{
+	display: block;
+	padding: 10px 20px;
+	background: #242424;
+	color:#d5d5d5;
+	font-size: 12px;
+}
+
+/* PC, Tablet */
+
+@media (min-width: 768px){
+
+	body.directory {
+		font-size: 16px;
+	}
+	.directory #search {
+		top: 30px;
+		left: 100px;
+		width: 200px;
+		padding: 6px 14px;
+		font-size: 13px;
+	}
+	.directory #search:focus {
+		width: 250px;
+	}
+	.directory h1{
+		font-size: 20px;
+	}
+	.directory h1 a{
+		color: #00c73c;
+	}
+	.directory h1 a:hover{
+		text-decoration: underline;;
+	}
+	.directory ul#files{
+		border: 1px solid #cacaca;
+		border-radius: 5px;
+	}
+	.directory ul#files li{
+		float: none;
+		width: auto;
+	}
+	.directory #files .icon .name{
+		text-indent: 32px;
+	}
+	.directory ul#files li,
+	.directory ul#files li a{
+		height: 32px;
+		line-height: 27px;
+	}
+	.directory ul#files li a:focus,
+	.directory ul#files li a:hover{
+		color: #00c73c;
+	}
+	.directory #info-agent{
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+
+}
+
+/* Mobile */
+
+@media (max-width: 768px){
+
+	body.directory {
+		font-size: 14px;
+	}
+	.directory #search{
+		font-size: 1.1em;
+		line-height: 1.1em;
+	}
+	.directory #wrapper{
+		border-top: 1px solid #cacaca;
+	}
+	.directory h1{
+		font-size: 20px;
+		line-height: 1em;
+		background: #fff;
+		color: #555;
+	}
+	.directory h1 a{
+		color: #00c73c;
+	}
+	.directory ul#files li{
+		font-size: 1em;
+	}
+	.directory #files .icon .name{
+		text-indent: 22px;
+	}
+
+}

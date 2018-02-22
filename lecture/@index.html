@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="ko"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+	<title>파일 리스트</title>
+	<style type="text/css">
+		/* Common */
+		body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+		body,input,textarea,select,button,table{font-size:14px;font-family:'나눔고딕',NanumGothic,'맑은 고딕','Malgun Gothic','돋움',Dotum,'굴림',Gulim,Helvetica,sans-serif;line-height:1.25em}
+		body.s,.s input,.s textarea,.s select,.s button,.s table{font-family:Helvetica}
+		ul,ol{list-style:none}
+		a{color:#000;text-decoration:none}
+		a:hover{background-color:#EBF2FC}
+		.u_vc{position:absolute;*left:-9999em;z-index:-1;font-size:4px;line-height:1px;color:transparent}
+		body{position:relative;padding:0 14px;background-color:#fff;color:#000;word-wrap:break-word;-webkit-text-size-adjust:none}
+		#ct{padding:0 0 30px 0}
+		header{padding:1em .1em .9em .1em;border-bottom:3px solid #222}
+		.hd_h1{font-size:1.2em}
+		h1{position:relative;padding:2em .1em .4em}
+		h1 span{position:absolute;right:0}
+		.sec_h{clear:both;padding:2em .1em .4em;border-bottom:1px solid #000;font-size:1em}
+		ul{font-size:.9em}
+		li{border-bottom:1px solid #dfdfdf}
+		li a{display:block;padding:.7em 31px .6em .1em;background:url(data:image/gif;base64,R0lGODlhEQAJAIABAJWVlf///yH5BAEAAAEALAAAAAARAAkAAAITBIKpa7efGpxyvmoRztt272RJAQA7) no-repeat 100% 50%;_zoom:1}
+		li span{margin-left:.4em;font-size:.86em;color:#909090}
+		footer{clear:both;margin:2.5em 0 4em;padding:6px 2px 2px;background:#f4f4f4;font-size:.86em;line-height:1.6em;color:#333;text-align:center}
+		dt,dd{display:inline;color:#333}
+		dt:after{display:inline;content:': '}
+		dd:last-of-type{display:inline-block;color:#aaa}
+		.ft_a{display:inline-block;padding:2px 2px 5px;color:#16d;letter-spacing:-1px;text-decoration:underline}
+	</style>
+	<!--[if lt IE 9]>
+	<script type="text/javascript">
+		document.createElement("section");
+		document.createElement("nav");
+		document.createElement("article");
+		document.createElement("aside");
+		document.createElement("hgroup");
+		document.createElement("header");
+		document.createElement("footer");
+	</script>
+	<![endif]-->
+	<script type="text/javascript">
+		var filelist_json = {"___default":{"groupList":[]},"Sass 기초와 활용":{"groupList":[{"path":"sass_article_all.html","dir":".","basename":"sass_article_all.html","title":"풀버전 v1.4"},{"path":"sass_article_developer_2017_1st_half.html","dir":".","basename":"sass_article_developer_2017_1st_half.html","title":"2017년 상반기 NTS 기술교육 v1.2"},{"path":"sass_article_inturn_2017_1st_half.html","dir":".","basename":"sass_article_inturn_2017_1st_half.html","title":"2017년 상반기 인턴 강의자료 v1.1"},{"path":"sass_article_inturn_2017_2nd_half.html","dir":".","basename":"sass_article_inturn_2017_2nd_half.html","title":"2017년 하반기 인턴 강의자료 v1.3"},{"path":"sass_article_inturn_2018_1st_half.html","dir":".","basename":"sass_article_inturn_2018_1st_half.html","title":"2018년 상반기 인턴 강의자료 v1.4"},{"path":"sass_article_partner_2016.html","dir":".","basename":"sass_article_partner_2016.html","title":"2016년 협력업체 파견인력 강의자료 v1.0"},{"path":"sass_article_seminar_2017_2nd_half.html","dir":".","basename":"sass_article_seminar_2017_2nd_half.html","title":"2017년 하반기 하드코딩하는사람들 강의자료 v1.3 Beta"},{"path":"sass_mail.html","dir":".","basename":"sass_mail.html","title":"메일"}]}};
+	</script>
+</head>
+<body>
+	<header role="banner">
+		<h1 class="hd_h1">파일 리스트</h1>
+	</header>
+	<article id="ct">
+		
+		<section role="main">
+			<h1 class="u_vc">마크업</h1>
+			<div id="groupList"></div>
+			<div id="defaultList"></div>
+		</section>
+	</article>
+	<script type="text/javascript">
+		function create_filelist(data) {
+			for(var groupName in filelist_json) {
+				var list;
+				var title_h2 = document.createElement('h2');
+				title_h2.classList.add('sec_h');
+				var title_string = '';
+
+				if(groupName == '___default') {
+					list = document.getElementById('defaultList');
+					title_string = '파일 리스트';
+				} else {
+					list = document.getElementById('groupList');
+					title_string = groupName;
+				}
+
+				if(title_h2.innerText === "") {
+					title_h2.innerText = title_string;
+				} else if(title_h2.textContent === "") {
+					title_h2.textContent = title_string;
+				}
+
+				list.appendChild(title_h2);
+
+				var ul = document.createElement('ul');
+				for(var i=0,imax=filelist_json[groupName].groupList.length;i<imax;i++) {
+					var li = document.createElement('li');
+					var data = filelist_json[groupName].groupList[i];
+					li.innerHTML = '<a href="src/'+data.path+'" target="_blank">'+(data.title || 'No Title')+'<span>'+data.path+'</span></a>';
+					ul.appendChild(li);
+				}
+				list.appendChild(ul);
+			}
+		}
+		if(filelist_json) {
+			create_filelist(filelist_json);
+		} else {
+			var filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1,window.location.pathname.lastIndexOf('.'));
+			var req = new XMLHttpRequest();
+			req.open('GET', './'+filename+'.json', false);
+			req.onreadystatechange = function (aEvt) {
+				if (req.readyState == 4) {
+					if(req.status == 200) {
+						create_filelist(JSON.parse(req.responseText));
+					}
+				}
+			};
+			req.send(null);
+		}
+	</script>
+	<!-- tuning, sunsoo -->
+	<link rel="stylesheet" type="text/css" media="all" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" media="all" href="lib/gulp-nts-uit-index-helper/css/tuning_index.css">
+	<script src="lib/gulp-nts-uit-index-helper/js/tuning_index.js" charset="utf-8"></script>
+	<!-- //tuning -->
+
+</body></html>

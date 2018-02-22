@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+body, p,
+h1, h2, h3, h4, h5, h6,
+ul, ol, li,
+dl, dt, dd,
+table, th, td,
+form, fieldset, legend, input, textarea, button, select,
+pre {
+	margin: 0;
+	padding: 0;
+}
+
+body,
+input,
+textarea,
+select,
+button,
+table {
+	font-size: 14px;
+	line-height: 1.2;
+}
+
+body {
+	position: relative;
+	-webkit-text-size-adjust: none;
+}
+
+img,
+fieldset {
+	border: 0;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+em,
+address {
+	font-style: normal;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+table {
+	border-collapse: collapse;
+}
+i {
+	font-style: normal;
+}
+
+a, abbr, address, article, aside, audio, b, blockquote, body, br, button, canvas, caption, cite, code, col, data, datalist, dd, del, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hr, html, i, iframe, img, input, ins, kbd, label, legend, li, main, mark, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, select, small, span, strong, sub, sup, table, td, textarea, th, time, u, ul, var, video {
+	box-sizing: border-box;
+}
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+    display: block;
+}
+strong {
+	font-weight: 400;
+}
+
+.blind,#u_skip{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+.dimmed{position:fixed;top:0;right:0;left:0;bottom:0;z-index:9999;width:100%;height:100%;background-color:rgba(0,0,0,0.6)}

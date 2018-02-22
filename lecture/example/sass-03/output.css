@@ -1,0 +1,13 @@
+body{font-size:12px}
+.espresso{color:red}
+.espresso:hover{color:orange}
+.espresso::after{color:yellow}
+.espresso[id="text"]{color:green}
+.espresso.americano{color:blue}
+.espresso#cappuccino{color:purple}
+.give_me_a-espresso{color:red}
+.please .give_me_a-americano{color:orange}
+.espresso{color:red}
+.espresso .cappuccino{color:orange}
+.espresso .cappuccino .latte{color:green}
+.cappuccino .latte{font-size:11px}

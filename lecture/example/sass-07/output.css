@@ -1,0 +1,546 @@
+@charset "UTF-8";
+.mocha {
+  background-size: 150px auto; 
+}
+
+.cappuccino {
+  font: 10px/20px;
+  font: 1.25em;
+  padding: 9px;
+  width: 500px;
+  bottom: 9px;
+  right: 7px;
+  top: 10px; 
+}
+
+.macchiato {
+  font: 10px/20px; 
+}
+
+/* 모두 출력 */
+.chocolate {
+  content: '첫 번째 @if true';
+  content: '두 번째 @if true';
+  content: '세 번째 @if true'; 
+}
+
+/* 모두 출력 안 됨 */
+/* 마지막 else만 출력 */
+.mocha {
+  content: '세 번째 @else'; 
+}
+
+/* 테스트 */
+.latte {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
+
+.vanilla {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; 
+}
+
+.latte1 {
+  background-position: 0 0px; 
+}
+
+.latte2 {
+  background-position: 0 -10px; 
+}
+
+.latte3 {
+  background-position: 0 -20px; 
+}
+
+.latte4 {
+  background-position: 0 -30px; 
+}
+
+.latte5 {
+  background-position: 0 -40px; 
+}
+
+.latte6 {
+  background-position: 0 -50px; 
+}
+
+.latte7 {
+  background-position: 0 -60px; 
+}
+
+.latte8 {
+  background-position: 0 -70px; 
+}
+
+.latte9 {
+  background-position: 0 -80px; 
+}
+
+.latte10 {
+  background-position: 0 -90px; 
+}
+
+.latte11 {
+  background-position: 0 -100px; 
+}
+
+.latte12 {
+  background-position: 0 -110px; 
+}
+
+.latte13 {
+  background-position: 0 -120px; 
+}
+
+.latte14 {
+  background-position: 0 -130px; 
+}
+
+.latte15 {
+  background-position: 0 -140px; 
+}
+
+.latte16 {
+  background-position: 0 -150px; 
+}
+
+.latte17 {
+  background-position: 0 -160px; 
+}
+
+.latte18 {
+  background-position: 0 -170px; 
+}
+
+.latte19 {
+  background-position: 0 -180px; 
+}
+
+.latte20 {
+  background-position: 0 -190px; 
+}
+
+.latte21 {
+  background-position: 0 -200px; 
+}
+
+.latte22 {
+  background-position: 0 -210px; 
+}
+
+.latte23 {
+  background-position: 0 -220px; 
+}
+
+.latte24 {
+  background-position: 0 -230px; 
+}
+
+.latte25 {
+  background-position: 0 -240px; 
+}
+
+.latte26 {
+  background-position: 0 -250px; 
+}
+
+.latte27 {
+  background-position: 0 -260px; 
+}
+
+.latte28 {
+  background-position: 0 -270px; 
+}
+
+.latte29 {
+  background-position: 0 -280px; 
+}
+
+.latte30 {
+  background-position: 0 -290px; 
+}
+
+.latte31 {
+  background-position: 0 -300px; 
+}
+
+.latte32 {
+  background-position: 0 -310px; 
+}
+
+.latte33 {
+  background-position: 0 -320px; 
+}
+
+.latte34 {
+  background-position: 0 -330px; 
+}
+
+.latte35 {
+  background-position: 0 -340px; 
+}
+
+.latte36 {
+  background-position: 0 -350px; 
+}
+
+.latte37 {
+  background-position: 0 -360px; 
+}
+
+.latte38 {
+  background-position: 0 -370px; 
+}
+
+.latte39 {
+  background-position: 0 -380px; 
+}
+
+.latte40 {
+  background-position: 0 -390px; 
+}
+
+.latte41 {
+  background-position: 0 -400px; 
+}
+
+.latte42 {
+  background-position: 0 -410px; 
+}
+
+.latte43 {
+  background-position: 0 -420px; 
+}
+
+.latte44 {
+  background-position: 0 -430px; 
+}
+
+.latte45 {
+  background-position: 0 -440px; 
+}
+
+.latte46 {
+  background-position: 0 -450px; 
+}
+
+.latte47 {
+  background-position: 0 -460px; 
+}
+
+.latte48 {
+  background-position: 0 -470px; 
+}
+
+.latte49 {
+  background-position: 0 -480px; 
+}
+
+.latte50 {
+  background-position: 0 -490px; 
+}
+
+.digit_area button {
+  width: 126px;
+  height: 126px;
+  background-image: url(../img/digits_square_icons.jpg); 
+}
+  .digit_area button.digit_0 {
+    background-position: 0px 0; 
+}
+  .digit_area button.digit_1 {
+    background-position: -156px 0; 
+}
+  .digit_area button.digit_2 {
+    background-position: -312px 0; 
+}
+  .digit_area button.digit_3 {
+    background-position: -468px 0; 
+}
+  .digit_area button.digit_4 {
+    background-position: 0px -144px; 
+}
+  .digit_area button.digit_5 {
+    background-position: -156px -144px; 
+}
+  .digit_area button.digit_6 {
+    background-position: -312px -144px; 
+}
+  .digit_area button.digit_7 {
+    background-position: -468px -144px; 
+}
+  .digit_area button.digit_8 {
+    background-position: 0px -287px; 
+}
+  .digit_area button.digit_9 {
+    background-position: -156px -287px; 
+}
+  .digit_area button.digit_10 {
+    background-position: -312px -287px; 
+}
+  .digit_area button.digit_11 {
+    background-position: -468px -287px; 
+}
+
+.espresso-icon {
+  background-image: url("/images/espresso.png"); 
+}
+
+.americano-icon {
+  background-image: url("/images/americano.png"); 
+}
+
+.latte-icon {
+  background-image: url("/images/latte.png"); 
+}
+
+.mocha-icon {
+  background-image: url("/images/mocha.png"); 
+}
+
+/* 리스트를 변수로 저장해서 사용해도 무관하다. */
+.espresso-icon {
+  background-image: url("/images/espresso.png"); 
+}
+
+.americano-icon {
+  background-image: url("/images/americano.png"); 
+}
+
+.latte-icon {
+  background-image: url("/images/latte.png"); 
+}
+
+.mocha-icon {
+  background-image: url("/images/mocha.png"); 
+}
+
+.espresso-icon {
+  background: #372000 url("/images/dark.png") no-repeat 0 0; 
+}
+
+.americano-icon {
+  background: #6d4b1a url("/images/mild.png") no-repeat 0 0; 
+}
+
+.latte-icon {
+  background: #9f7a45 url("/images/soft.png") no-repeat 0 0; 
+}
+
+.mocha-icon {
+  background: #f3f3f3 url("/images/sweet.png") no-repeat 0 0; 
+}
+
+.strong-icon {
+  background-image: url("/images/espresso.png"); 
+}
+
+.mild-icon {
+  background-image: url("/images/americano.png"); 
+}
+
+.soft-icon {
+  background-image: url("/images/latte.png"); 
+}
+
+.sweet-icon {
+  background-image: url("/images/mocha.png"); 
+}
+
+/* map */
+/* 지도 버튼 */
+/* 주변 편의시설 */
+.layer_btn_bus {
+  background-color: #20af83;
+  color: white; 
+}
+
+.layer_btn_metro {
+  background-color: #73c74d;
+  color: white; 
+}
+
+.layer_btn_hospital {
+  background-color: #55b7ff;
+  color: white; 
+}
+
+.layer_btn_medi {
+  background-color: #4887ff;
+  color: white; 
+}
+
+.layer_btn_parking {
+  background-color: #71798d;
+  color: white; 
+}
+
+.layer_btn_mart {
+  background-color: #ff9558;
+  color: white; 
+}
+
+.layer_btn_convenience {
+  background-color: #b672f8;
+  color: white; 
+}
+
+.layer_btn_washing {
+  background-color: #36cadc;
+  color: white; 
+}
+
+.layer_btn_repair {
+  background-color: #8d6e63;
+  color: white; 
+}
+
+.layer_btn_bank {
+  background-color: #3f498c;
+  color: white; 
+}
+
+.layer_btn_office {
+  background-color: #00695c;
+  color: white; 
+}
+
+.layer_btn_infant {
+  background-color: #ffb657;
+  color: white; 
+}
+
+.layer_btn_preschool {
+  background-color: #ff9558;
+  color: white; 
+}
+
+.layer_btn_school {
+  background-color: #f86b59;
+  color: white; 
+}
+
+.layer_btn_schoolpoi {
+  background-color: #f86b59;
+  color: white; 
+}
+
+.layer_btn_beauty {
+  background-color: #ff7cb0;
+  color: white; 
+}
+
+/* 지하철 */
+.subway_type--s1 {
+  background-color: #003499;
+  color: white; 
+}
+.subway_type--s2 {
+  background-color: #38b149;
+  color: white; 
+}
+.subway_type--s3 {
+  background-color: #f36f34;
+  color: white; 
+}
+.subway_type--s4 {
+  background-color: #2d9ede;
+  color: white; 
+}
+.subway_type--s5 {
+  background-color: #893bb6;
+  color: white; 
+}
+.subway_type--s6 {
+  background-color: #8f490e;
+  color: white; 
+}
+.subway_type--s7 {
+  background-color: #606d00;
+  color: white; 
+}
+.subway_type--s8 {
+  background-color: #e71e6e;
+  color: white; 
+}
+.subway_type--s9 {
+  background-color: #b6971d;
+  color: white; 
+}
+.subway_type--s100 {
+  background-color: #edb217;
+  color: white; 
+}
+.subway_type--s101 {
+  background-color: #71b8e5;
+  color: white; 
+}
+.subway_type--s103 {
+  background-color: #6cb7b7;
+  color: white; 
+}
+.subway_type--s104 {
+  background-color: #2fbc9e;
+  color: white; 
+}
+.subway_type--s107 {
+  background-color: #77c371;
+  color: white; 
+}
+.subway_type--s108 {
+  background-color: #26a97f;
+  color: white; 
+}
+.subway_type--s109 {
+  background-color: #a8022d;
+  color: white; 
+}
+.subway_type--s110 {
+  background-color: #ff8e00;
+  color: white; 
+}
+.subway_type--s111 {
+  background-color: #edb217;
+  color: white; 
+}
+.subway_type--s112 {
+  background-color: #2673f2;
+  color: white; 
+}
+.subway_type--s22 {
+  background-color: #ffb95a;
+  color: white; 
+}
+.subway_type--s71 {
+  background-color: #fa5f2c;
+  color: white; 
+}
+.subway_type--s72 {
+  background-color: #37b42d;
+  color: white; 
+}
+.subway_type--s73 {
+  background-color: #bf9f1e;
+  color: white; 
+}
+.subway_type--s74 {
+  background-color: #2d9ede;
+  color: white; 
+}
+.subway_type--s51 {
+  background-color: #37b42d;
+  color: white; 
+}
+.subway_type--s21 {
+  border: 1px solid #5191cf;
+  color: #4489cb; 
+}
+.subway_type--s79 {
+  border: 1px solid #893bb6;
+  color: #893bb6; 
+}

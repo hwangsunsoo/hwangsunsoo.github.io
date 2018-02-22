@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+@import '_espresso';
+
+.espresso {
+	color: red;
+
+	&:hover {
+		color: orange; // 가상 클래스
+	}
+	&::after {
+		color: yellow; // 가상 요소
+	}
+	&[id="text"] {
+		color: green; // 속성 선택자
+	}
+	&.americano {
+		color: blue; // 클래스 선택자
+	}
+	&#cappuccino {
+		color: purple; // 아이디 선택자
+	}
+}
+
+.give_me_a {
+	&-espresso {
+		color: red;
+	}
+	.please &-americano {
+		color: orange;
+	}
+}
+
+.espresso {
+    color: red;
+
+    .cappuccino {
+        color: orange;
+
+        .latte {
+            color: green;
+        }
+    }
+}
+
+.latte {
+	.cappuccino & {
+		font-size: 11px;
+	}
+}

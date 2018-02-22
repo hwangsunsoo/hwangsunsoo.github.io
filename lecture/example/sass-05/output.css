@@ -1,0 +1,107 @@
+.thumbnail {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: 50% 0; 
+}
+  .thumbnail:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 10px solid #000;
+    opacity: 0.2;
+    content: ''; 
+}
+
+.thumbnail_rotate {
+  position: relative;
+  transform: rotate(45deg);
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: 50% 0; 
+}
+  .thumbnail_rotate:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 10px solid #000;
+    opacity: 0.2;
+    content: ''; 
+}
+
+.ex_box_1 {
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  left: 50%;
+  margin-left: -50px;
+  height: 100px;
+  width: 100px;
+  background-color: pink; 
+}
+
+.ex_box_2 {
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  left: 50%;
+  margin-left: -150px;
+  height: 100px;
+  width: 300px;
+  background-color: orange; 
+}
+
+.ex_box_3 {
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  left: 50%;
+  margin-left: -100px;
+  height: 100px;
+  width: 200px;
+  background-color: violet; 
+}
+
+.ex_box_4 {
+  position: absolute;
+  top: 50%;
+  margin-top: -75px;
+  left: 50%;
+  margin-left: -75px;
+  height: 150px;
+  width: 150px;
+  background-color: black; 
+}
+
+.give {
+  margin: 5px; 
+}
+
+.me {
+  margin: 5px 10px; 
+}
+
+.a {
+  margin: 5px 10px 15px; 
+}
+
+.latte {
+  margin: 5px 10px 15px 20px; 
+}
+
+.mixin_media {
+  width: 100%;
+  height: 100%;
+  background-color: pink; 
+}
+  @media all and (max-width: 600px) {
+    .mixin_media {
+      background-color: green; 
+}
+}

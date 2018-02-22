@@ -1,0 +1,7 @@
+.section{background:white}
+.section .title{color:green}
+.section .description{text-align:center}
+.section .description_list{margin:20px 0;padding:20px;border:1px solid gray}
+.section .description_list dd{font-size:15px;line-height:20px}
+
+/*# sourceMappingURL=output_compact.css.map */

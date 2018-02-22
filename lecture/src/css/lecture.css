@@ -1,0 +1,958 @@
+@charset "UTF-8";
+body, p,
+h1, h2, h3, h4, h5, h6,
+ul, ol, li,
+dl, dt, dd,
+table, th, td,
+form, fieldset, legend, input, textarea, button, select,
+pre {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+input,
+textarea,
+select,
+button,
+table {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+body {
+  position: relative;
+  -webkit-text-size-adjust: none;
+}
+
+img,
+fieldset {
+  border: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+em,
+address {
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+i {
+  font-style: normal;
+}
+
+a, abbr, address, article, aside, audio, b, blockquote, body, br, button, canvas, caption, cite, code, col, data, datalist, dd, del, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hr, html, i, iframe, img, input, ins, kbd, label, legend, li, main, mark, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, select, small, span, strong, sub, sup, table, td, textarea, th, time, u, ul, var, video {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+  display: block;
+}
+
+strong {
+  font-weight: 400;
+}
+
+.blind, #u_skip {
+  visibility: hidden;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  font-size: 0;
+  line-height: 0;
+}
+
+.dimmed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Nov. 2016 - Sunsoo, NHN Technology Services UIT Development Division */
+/*
+// OTF 폰트 타입은 프린터에 따라 폰트 오류가 날 수 있음.
+$title-font: 'Apple SD Gothic Neo';
+$text-font: 'Apple SD Gothic Neo';
+*/
+body {
+  font-family: NanumBarunGothic, "Apple SD Gothic Neo", Dotum, sans-serif;
+  font-size: 12px;
+  color: #777;
+}
+
+@media print {
+  body {
+    font-size: 11px;
+  }
+}
+
+.wrap-lecture {
+  position: relative;
+  padding: 55px 0;
+}
+
+@media print {
+  .wrap-lecture {
+    padding: 55px 50px 0;
+  }
+}
+
+.wrap-lecture ::selection {
+  background-color: #099;
+  color: #fff;
+}
+
+.wrap-lecture--sass ::selection {
+  background-color: #cd679a;
+}
+
+header, footer {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  height: 55px;
+  line-height: 55px;
+  background: #fff;
+  text-align: center;
+  opacity: 0.9;
+  border-style: solid;
+  border-color: #e0e0e0;
+  border-width: 0;
+}
+
+@media print {
+  header, footer {
+    position: relative;
+    opacity: 1;
+  }
+}
+
+header {
+  top: 0;
+  border-bottom-width: 1px;
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.03);
+          box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.03);
+}
+
+@media print {
+  header {
+    border-bottom-width: 0;
+    text-align: right;
+  }
+}
+
+header h1 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+@media print {
+  header h1 {
+    font-family: NanumSquare, NanumBarunGothic, "Apple SD Gothic Neo", Dotum, sans-serif;
+    font-size: 30px;
+  }
+}
+
+footer {
+  bottom: 0;
+  border-top-width: 1px;
+}
+
+@media print {
+  footer {
+    display: none;
+  }
+}
+
+hr {
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+  border-style: dashed;
+  border-color: transparent;
+  border-width: 1px 0 0 0;
+}
+
+hr.is-lined {
+  border-color: #333;
+}
+
+hr.is-lined:after {
+  content: '페이지구분선';
+  position: absolute;
+  top: 2px;
+  right: 0;
+  padding: 3px 3px 1px;
+  background-color: #333;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+}
+
+@media print {
+  hr {
+    page-break-before: always;
+    border-width: 0;
+  }
+  hr:after {
+    opacity: 0;
+  }
+}
+
+.title-area {
+  padding: 100px 20px;
+}
+
+.title-area h1, .title-area h2, .title-area h3, .title-area h4, .title-area h5, .title-area h6 {
+  font-family: NanumSquare, NanumBarunGothic, "Apple SD Gothic Neo", Dotum, sans-serif;
+  font-weight: 400;
+  margin: 15px 0;
+}
+
+.title-area h1 {
+  font-size: 32px;
+  color: #333;
+  text-align: center;
+}
+
+.title-area p {
+  font-size: 18px;
+  text-align: center;
+}
+
+.title-area p strong {
+  color: #000;
+}
+
+.author-name {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #000;
+  font-family: NanumSquare, NanumBarunGothic, "Apple SD Gothic Neo", Dotum, sans-serif;
+  font-size: 16px;
+  text-align: right;
+}
+
+.table-of-contents, .section {
+  width: auto;
+  max-width: 768px;
+  margin: 20px auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.table-of-contents {
+  background: #fafafa;
+  margin-bottom: 100px;
+  padding: 20px;
+  border: 1px solid #eee;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.table-of-contents h1 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #099;
+}
+
+.table-of-contents a {
+  display: block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.table-of-contents a.lv1 {
+  margin-top: 20px;
+  color: #4b4b4b;
+}
+
+.table-of-contents a.lv2 {
+  margin-top: 10px;
+  padding-left: 15px;
+  color: #777;
+}
+
+.table-of-contents a:hover {
+  color: #3b8bba;
+}
+
+@media screen and (max-width: 768px) {
+  .table-of-contents {
+    width: auto;
+    margin: 20px;
+  }
+}
+
+@media print {
+  .table-of-contents {
+    padding: 0;
+    border: 0;
+  }
+  .table-of-contents a.lv1 {
+    margin-top: 15px;
+  }
+  .table-of-contents a.lv2 {
+    margin-top: 7px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    width: auto;
+    padding: 0 20px;
+  }
+}
+
+.section article {
+  margin-bottom: 130px;
+  word-break: break-all;
+}
+
+.section article:last-child {
+  margin-bottom: 1000px;
+}
+
+@media print {
+  .section article:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section article.cover-letter p {
+  margin-bottom: 35px;
+}
+
+.section article.cover-letter p:last-child {
+  margin-bottom: 0;
+}
+
+.section article h1, .section article h2, .section article h3, .section article h4, .section article h5, .section article h6 {
+  position: relative;
+  font-family: NanumSquare, NanumBarunGothic, "Apple SD Gothic Neo", Dotum, sans-serif;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.section article h1 {
+  margin-bottom: 20px;
+  padding-top: 70px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #dcdbdb;
+  font-size: 27px;
+  color: #333;
+  text-align: center;
+}
+
+@media print {
+  .section article h1 {
+    padding-top: 30px;
+    border-color: #000;
+    font-size: 25px;
+  }
+}
+
+.section article h2 {
+  margin-bottom: 10px;
+  padding-top: 70px;
+  font-size: 25px;
+  color: #099;
+}
+
+@media print {
+  .section article h2 {
+    padding-top: 20px;
+    font-size: 23px;
+  }
+}
+
+@media print {
+  .section article h2.compact_paddingtop {
+    padding-top: 0;
+  }
+}
+
+.section article h3 {
+  margin-top: 30px;
+  font-size: 22px;
+  color: #13d3ea;
+}
+
+.section article h4 {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #000;
+}
+
+.section article h5 {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.section article h6 {
+  margin-top: 10px;
+  font-size: 15px;
+  color: #333;
+}
+
+@media print {
+  .section article h2:before, .section article h3:before, .section article h4:before, .section article h5:before, .section article h6:before {
+    position: absolute;
+    right: 100%;
+    margin-right: 6px;
+  }
+  .section article h2:before {
+    content: '◎';
+  }
+  .section article h3:before {
+    content: '●';
+  }
+  .section article h4:before {
+    content: '○';
+  }
+}
+
+.section article blockquote {
+  margin: 10px 0;
+  padding-left: 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.section article p, .section article ul, .section article ol, .section article table {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.section article p.text_small, .section article ul.text_small, .section article ol.text_small, .section article table.text_small {
+  font-size: 13px;
+}
+
+@media print {
+  .section article p.text_small, .section article ul.text_small, .section article ol.text_small, .section article table.text_small {
+    font-size: 11px;
+  }
+}
+
+.section article p {
+  margin: 10px 0;
+  text-align: justify;
+}
+
+.section article p em, .section article li em {
+  color: #ffa52f;
+}
+
+.section article p span, .section article li span {
+  color: #8ec5c5;
+}
+
+.section article p code, .section article li code {
+  display: inline-block;
+  margin-right: 2px;
+  padding: 0 5px;
+  font-size: 85%;
+  background-color: #f9f2f4;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  color: #c7254e;
+}
+
+@media print {
+  .section article p code, .section article li code {
+    border: 1px solid #000;
+  }
+}
+
+.section article p small, .section article li small {
+  font-size: 0.85em;
+}
+
+.section article .center {
+  text-align: center;
+}
+
+.section article .right {
+  text-align: right;
+}
+
+.section article ul, .section article ol {
+  margin: 10px 0;
+}
+
+.section article ul {
+  padding-left: 18px;
+  list-style-type: square;
+}
+
+.section article ul ul {
+  list-style-type: circle;
+}
+
+.section article ol {
+  padding-left: 22px;
+  list-style-type: decimal;
+}
+
+.section article table {
+  width: 100%;
+}
+
+.section article table th, .section article table td {
+  padding: 10px;
+  border: 1px solid #cbcbcb;
+}
+
+@media print {
+  .section article table th, .section article table td {
+    border-color: #000;
+  }
+}
+
+.section article table th p, .section article table td p {
+  margin: 0;
+}
+
+.section article table th {
+  background: rgba(0, 0, 0, 0.1);
+  color: #000;
+  text-align: left;
+  font-weight: 400;
+}
+
+.section article table td:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.section article table.calc-table th p, .section article table.calc-table td p {
+  text-align: center;
+}
+
+.section article table.calc-table th {
+  width: 20%;
+}
+
+.section article table.calc-table td {
+  width: 40%;
+}
+
+.section article table.vertical-table {
+  table-layout: fixed;
+}
+
+.section article table.vertical-table th p {
+  text-align: center;
+}
+
+.section article table.vertical-table td {
+  vertical-align: top;
+}
+
+.section article a {
+  color: #3b8bba;
+}
+
+.section article a:hover {
+  text-decoration: underline;
+}
+
+.section article a.button {
+  margin-right: 2px;
+  padding: 3px 7px;
+  font-size: 13px;
+  background: #e6e6e6;
+  border: 1px solid #d3d3d3;
+  -webkit-border-radius: 2px;
+          border-radius: 2px;
+  color: #444;
+}
+
+.section article a.button:hover {
+  text-decoration: none;
+  background: #dadada;
+  border-color: #999;
+}
+
+.section article a.button.primary {
+  background: #337ab7;
+  border-color: #2e6da4;
+  color: #fff;
+}
+
+.section article a.button.primary:hover {
+  background: #286090;
+  border-color: #204d74;
+}
+
+.section figure {
+  position: relative;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #dcdbdb;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: center;
+}
+
+@media print {
+  .section figure {
+    border-color: #000;
+  }
+}
+
+.section figure:before {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  text-align: center;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 30px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f00e";
+}
+
+@media screen and (max-width: 768px) {
+  .section figure:before {
+    display: none;
+  }
+}
+
+@media print {
+  .section figure:before {
+    display: none;
+  }
+}
+
+.section figure:hover {
+  border-color: #099;
+}
+
+.section figure:hover:before {
+  color: #099;
+}
+
+.section figure img {
+  max-width: 100%;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.section .folder-style-area {
+  padding: 0.5em 1em;
+  background: rgba(0, 0, 0, 0.1);
+  font-family: monospace;
+}
+
+@media print {
+  .section .folder-style-area {
+    border: 1px solid #000;
+  }
+}
+
+.section .folder-style-area ul {
+  margin: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.section .folder-style-area ul ul {
+  padding-left: 36px;
+}
+
+.section .folder-style-area .open {
+  color: #2aa198;
+}
+
+.bar {
+  margin: 0 7px;
+}
+
+.bar:before {
+  content: '|';
+  color: rgba(0, 0, 0, 0.2);
+}
+
+@media print {
+  .bar:before {
+    color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.assistance-image-area + h1, .assistance-image-area + h2 {
+  margin-top: -70px;
+}
+
+@media print {
+  .assistance-image-area + h1, .assistance-image-area + h2 {
+    margin-top: inherit;
+  }
+}
+
+@media print {
+  .assistance-image-area {
+    display: none;
+  }
+}
+
+.hljs {
+  font-size: 15px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.hljs::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+@media print {
+  .hljs {
+    border: 1px solid #000;
+  }
+}
+
+.character {
+  width: 140px;
+  vertical-align: middle;
+}
+
+.img-viewer {
+  display: none;
+}
+
+.img-viewer .img-viewer-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+}
+
+.img-viewer img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.breaktime-viewer {
+  display: none;
+}
+
+.breaktime-viewer .breaktime-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-top: -200px;
+  margin-left: -200px;
+  background: #fff;
+  text-align: center;
+}
+
+.breaktime-viewer .breaktime-inner h1 {
+  font-family: NanumSquare, NanumBarunGothic, "Apple SD Gothic Neo", Dotum, sans-serif;
+  font-weight: 400;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 30px;
+  color: #333;
+}
+
+.lecture-button {
+  position: fixed;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  line-height: 41px;
+  background: #333;
+  -webkit-border-radius: 30px;
+          border-radius: 30px;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  bottom: 7px;
+}
+
+@media screen and (max-width: 768px) {
+  .lecture-button {
+    background: #333;
+    background: rgba(51, 51, 51, 0.7);
+  }
+}
+
+@media print {
+  .lecture-button {
+    display: none;
+  }
+}
+
+.lecture-button:hover, .lecture-button.is-opened {
+  background: #099;
+}
+
+@media screen and (max-width: 768px) {
+  .lecture-button:hover, .lecture-button.is-opened {
+    background: #099;
+    background: rgba(0, 153, 153, 0.7);
+  }
+}
+
+.lecture-button--print {
+  left: 10px;
+}
+
+.lecture-button--pageline {
+  left: 55px;
+}
+
+.lecture-button--breaktime {
+  left: 100px;
+}
+
+.lecture-button--sketch {
+  left: 145px;
+}
+
+.lecture-button--list {
+  right: 55px;
+}
+
+.lecture-button--top {
+  right: 10px;
+}
+
+.table-of-contents-sub {
+  position: fixed;
+  right: -300px;
+  bottom: 66px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  width: 300px;
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.table-of-contents-sub .table-of-contents {
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  -webkit-box-shadow: 0;
+          box-shadow: 0;
+}
+
+.table-of-contents-sub h1 {
+  margin-bottom: 5px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.table-of-contents-sub a {
+  display: block;
+  width: 250px;
+  font-size: 11px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-of-contents-sub a.lv1 {
+  margin-top: 2px;
+}
+
+.table-of-contents-sub a.lv2 {
+  margin-top: 2px;
+}
+
+.sketch-pad {
+  display: none;
+  position: fixed;
+  top: 55px;
+  left: 0;
+  right: 0;
+  bottom: 55px;
+}
+
+.sketch-pad .tools {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+
+.sketch-pad .tools a {
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  min-width: 20px;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+  font-weight: bold;
+}
+
+.sketch-pad .tools a.marker, .sketch-pad .tools a.eraser {
+  padding: 0 5px;
+}
+
+.sketch-pad .tools a.size {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  .print-only {
+    display: block;
+  }
+  .screen-only {
+    display: none;
+  }
+  * {
+    background: transparent !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    color: #000 !important;
+  }
+  pre {
+    white-space: pre-wrap;
+  }
+}
+
+/*# sourceMappingURL=maps/lecture.css.map */

@@ -1,0 +1,54 @@
+.latte{color:#0000ff;border:10px solid #000099}
+.latte:hover{color:#9999ff;border:10px solid #0000cc}
+.americano{background-color:rgba(0, 0, 255, 0.3)}
+/*
+$size: 12px;
+
+.latte{
+	width: $size;
+
+	.americano{
+		width: $size;
+	}
+}
+.cappuccino{
+	width: $size;
+}
+*/
+/*
+.latte{
+	$size: 12px;
+
+	width: $size;
+
+	.americano{
+		width: $size;
+	}
+}
+.cappuccino{
+	width: $size;
+}
+
+/*
+.latte{
+	$size: 12px;
+
+	width: $size;
+
+	.americano{
+		width: $size;
+	}
+}
+.cappuccino{
+	$size: 10px;
+
+	width: $size;
+}
+*/
+.sp_land{background-image:url(http://static.land.naver.net/static/mobile/20160929/sp_ic.png)}
+.list_test{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;-webkit-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;border-radius:50%}
+.coffee_americano{background-color:#391919}
+.coffee_latte{background-color:#aa9f7d}
+.coffee_cappuccino{background-color:#887e61}
+.coffee_macchiato{background-color:#d0b76a}
+.coffee_mocha{background-color:#804c2a}
