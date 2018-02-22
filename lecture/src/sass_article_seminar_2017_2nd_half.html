@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>[Sass 기초와 활용] 2017년 하반기 하드코딩하는사람들 강의자료 v1.3 Beta</title>
+<title>[Sass 기초와 활용] 2017년 하반기 하드코딩하는사람들 강의자료 v1.4</title>
 <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="../lib/highlight/styles/solarized-light.css">
 <link rel="stylesheet" type="text/css" href="css/lecture.css">
@@ -846,7 +846,7 @@ $buffer: 20px;
 .area{
 	@include setAbsolute($top:0,$bottom:0,$right:$buffer);
 }</code></pre>
-			<p class="right"><a href="http://orguser.navercorp.com/searchOrg.nhn?m=getOrgBox&amp;emp.orgSearchKey=6&amp;emp.resizable=1&amp;emp.status=0&amp;emp.toolbar=0&amp;emp.menubar=0&amp;emp.scrollbars=1&amp;emp.location=0&amp;emp.emailAdr=sangzin.lee@nhn.com" target="_blank">이상진</a>. 네이버 블로그 PC, NHN Technology Services, 2017.</p>
+			<p class="right"><a href="http://orguser.navercorp.com/searchOrg.nhn?m=getOrgBox&amp;emp.orgSearchKey=6&amp;emp.resizable=1&amp;emp.status=0&amp;emp.toolbar=0&amp;emp.menubar=0&amp;emp.scrollbars=1&amp;emp.location=0&amp;emp.emailAdr=sangzin.lee@nhn.com" target="_blank">이상진</a>. 네이버 블로그 PC 개편, NHN Technology Services, 2017.</p>
 			<h4>CSS 코드 (컴파일결과)</h4>
 			<pre><code class="css">.area{
 	position: absolute;
@@ -1785,14 +1785,14 @@ $map-subways-bd: (
 		}
 	}
 }</code></pre>
-		<p class="right">주선미. 네이버 부동산 모바일, NHN Technology Services, 2017.</p>
+			<p class="right">주선미. 네이버 부동산 모바일 개편, NHN Technology Services, 2017.</p>
 
-		<hr><!-- 페이지 구분 -->
+			<hr><!-- 페이지 구분 -->
 
-		<h3>map-get</h3>
-		<p><code>map</code> 데이터 세트에 매핑되어 있는 특정 값을 가져오기 위해 <code>map-get</code>을 사용한다.</p>
-		<h4>SCSS 코드</h4>
-		<pre><code class="scss">/* 위 예제를 간소화 */
+			<h3>map-get</h3>
+			<p><code>map</code> 데이터 세트에 매핑되어 있는 특정 값을 가져오기 위해 <code>map-get</code>을 사용한다.</p>
+			<h4>SCSS 코드</h4>
+			<pre><code class="scss">/* 위 예제를 간소화 */
 $map-subways-bd: (
 	s1: (bd-color: #5191cf, font-color:#4489cb),
 	s2: (bd-color: #893bb6, font-color:#893bb6),
@@ -1805,8 +1805,8 @@ $map-subways-bd: (
 		}
 	}
 }</code></pre>
-		<h4>CSS 코드 (컴파일결과)</h4>
-		<pre><code class="css">.subway_type--s1{
+			<h4>CSS 코드 (컴파일결과)</h4>
+			<pre><code class="css">.subway_type--s1{
 	border: 1px solid #5191cf;
 	color: #4489cb;
 }
@@ -1814,6 +1814,40 @@ $map-subways-bd: (
 	border: 1px solid #893bb6;
 	color: #893bb6;
 }</code></pre>
+
+			<hr><!-- 페이지 구분 -->
+
+			<h2>함수 (@function)</h2>
+			<p>함수는 코드를 한데 묶어 놓고 필요할 때마다 호출하여 사용하며, 인자 값을 전달할 수 있다는 점이 <code>mixin</code>과 유사하다. 그 생김새와 사용 방법이 비슷해 보이기 때문에 둘 중에서 어떤 것을 사용할지 결정하는 일이 어려울 지도 모른다.</p>
+			<h3>@function과 @mixin 비교</h3>
+			<h4>SCSS 코드</h4>
+			<pre><code class="scss">/* 함수 */
+@function size($num) {
+	@return #{$num}px;
+}
+.coffee { font-size: size(10); }
+
+/* mixin */
+@mixin size($num) {
+	font-size: #{$num}px;
+}
+.latte { @include size(10); }
+</code></pre>
+			<p>앞의 두 코드 모두 <code>font-size: 10px;</code>로 동일하게 컴파일 되지만 분명히 다르게 동작한다.</p>
+			<p><code>mixin</code>은 이미 속성에 대한 값을 정의하여 완성된 CSS를 컴파일 하는 것을 목적으로 한다. 따라서 매개변수로 넘겨 받은 <code>10px</code>이라는 값을 <code>font-size</code>가 아닌 다른 속성에 사용하기 위해서는 매개 변수를 추가하거나 또 다른 <code>mixin</code>을 만들어야 한다. 반면에 함수는 매개 변수가 적용된 '값'만 리턴한다. 따라서 다른 속성이나 클래스는 물론이고 또 다른 함수까지 그 값이 필요한 곳이라면 어디든지 사용할 수 있다.</p>
+			<p>즉 CSS를 한 글자씩 타이핑 하지 않고 <code>@include</code>라는 키워드로 간단하게 불러오고 싶다면 <code>mixin</code>을 사용한다. 하지만 일정한 행위 또는 특정한 동작을 수행하도록 설계된 로직이 필요하다면, 특히 모든 프로젝트에 걸쳐서 다양한 용도로 사용하고 싶다면 함수를 사용한다.</p>
+
+			<hr><!-- 페이지 구분 -->
+
+			<h3>사용 방법</h3>
+			<p>Sass가 제공하는 함수 외에 프로젝트 내에서도 사용자가 직접 정의하여 사용할 수 있다. 전역 변수에 접근은 물론이고 변수를 인자로 받을 수 있는 점까지 <code>mixin</code>과 유사하다. 값을 전달한다는 점이 함수의 가장 큰 특징이며, 함수를 호출한 곳에서 그 값을 사용하기 위해서는 함수 내에 <code>@return</code>을 사용해야 한다. <code>@return</code>을 만나면 함수를 빠져 나가기 때문에, 그 아래에 있는 코드들은 모두 무시한다.</p>
+			<h3>자주 사용하는 Sass 함수</h3>
+			<p>모든 함수를 외워서 사용할 수는 없기 때문에 Sass-lang 사이트에 있는 <a href="http://www.sass-lang.com/documentation/Sass/Script/Functions.html" target="_blank">Sass 함수 문서</a>를 참고한다. Sass가 제공하는 함수는 색상(RGB, HSL, 투명도), 문자열, 숫자, 리스트, map, 선택자 관련 함수들과 그 밖의 여러 기능을 하는 내장함수가 있다. 필요할 때마다 찾아서 쓰도록 하자.</p>
+			<div class="print-only">
+				<ul>
+					<li>Sass 함수 문서:<br>http://www.sass-lang.com/documentation/Sass/Script/Functions.html</li>
+				</ul>
+			</div>
 
 		</article>
 
@@ -1907,7 +1941,7 @@ $naver-color: #00c73c;
 $primary-color: #57a0f6;
 $background-color: #e6e7e8;
 ...</code></pre>
-			<p class="right">황선수. 네이버 부동산 모바일, NHN Technology Services, 2017.</p>
+			<p class="right">황선수. 네이버 부동산 모바일 개편, NHN Technology Services, 2017.</p>
 
 		</article>
 
@@ -1937,7 +1971,6 @@ $background-color: #e6e7e8;
 <a class="lecture-button lecture-button--print" href="#" title="출력하기"><i class="fa fa-print" aria-hidden="true"></i></a>
 <a class="lecture-button lecture-button--pageline" href="#" title="페이지구분선보기"><i class="fa fa-file-o" aria-hidden="true"></i></a>
 <a class="lecture-button lecture-button--breaktime" href="#" title="쉬는시간"><i class="fa fa-coffee" aria-hidden="true"></i></a>
-<a class="lecture-button lecture-button--sketch" href="#" title="판서하기"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
 <a class="lecture-button lecture-button--list" href="#" title="목차보기"><i class="fa fa-bars" aria-hidden="true"></i></a>
 <a class="lecture-button lecture-button--top" href="#" title="맨위로"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
@@ -1964,26 +1997,6 @@ hljs.configure({
 })
 hljs.initHighlighting();
 </script>
-
-<script src="../lib/sketch/sketch.js"></script> <!-- http://intridea.github.io/sketch.js/ -->
-<div class="sketch-pad" id="colors_demo">
-	<div class="tools">
-		<a href="#colors_sketch" data-tool="marker" class="marker">Marker</a>
-		<a href="#colors_sketch" data-tool="eraser" class="eraser">Eraser</a>
-	</div>
-	<canvas id="colors_sketch" width="10000" height="10000"></canvas>
-	<script type="text/javascript">
-		$(function() {
-			$.each(['#f00', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', '#000'], function() {
-				$('#colors_demo .tools').append("<a href='#colors_sketch' data-color='" + this + "' style='background: " + this + ";'></a> ");
-			});
-			$.each([3, 5, 10, 15], function() {
-				$('#colors_demo .tools').append("<a href='#colors_sketch' data-size='" + this + "' class='size'>" + this + "</a> ");
-			});
-			$('#colors_sketch').sketch();
-		});
-	</script>
-</div>
 
 <script src="js/lecture.js"></script>
 

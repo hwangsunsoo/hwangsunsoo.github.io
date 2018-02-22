@@ -1,7 +1,7 @@
 {
   "name": "lecture",
   "version": "1.0.0",
-  "description": "- 황선수, 2017 <a href=\"http://view.gitlab2.uit.nhncorp.com/sunsoo/lecture/raw/master/@index.html\" target=\"_blank\">강의자료 보기</a>",
+  "description": "-",
   "main": "index.js",
   "directories": {
     "doc": "doc",
@@ -12,9 +12,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://gitlab2.uit.nhncorp.com/sunsoo/lecture.git"
+    "url": "https://github.com/hwangsunsoo/hwangsunsoo.github.io.git"
   },
-  "author": "sunsoo@nhn.com",
+  "author": "hwangsunsoo@gmail.com",
   "license": "ISC",
   "dependencies": {
     "browser-sync": "^2.18.13",
