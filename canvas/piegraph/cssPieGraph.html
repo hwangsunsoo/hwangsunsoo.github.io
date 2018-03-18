@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>cssPieGraph</title>
+<link href="css/w.css" media="all" rel="stylesheet" type="text/css">
+<style type="text/css">
+#wrap{
+    width: 350px;
+    margin: 0 auto;
+    text-align: center;
+}
+h1{
+    font-family:HelveticaNeue, AppleSDGothicNeo, sans-serif;
+    text-align:center;
+}
+</style>
+</head>
+<body>
+
+    <div id="wrap">
+        <h1>CSS Pie Graph</h1>
+        <div class="wrapper">
+            <div class="pie spinner"></div>
+            <div class="pie filler"></div>
+            <div class="mask"></div>
+        </div>
+        <a href="http://codepen.io/HugoGiraudel/pen/BHEwo" target="_blank">Original code</a>
+    </div>
+
+    <div id="wrap">
+        <h1>No spinner</h1>
+        <div class="wrapper">
+            <div class="pie filler"></div>
+            <div class="mask"></div>
+        </div>
+    </div>
+
+    <div id="wrap">
+        <h1>No filler</h1>
+        <div class="wrapper">
+            <div class="pie spinner"></div>
+            <div class="mask"></div>
+        </div>
+    </div>
+
+    <div id="wrap">
+        <h1>No mask</h1>
+        <div class="wrapper">
+            <div class="pie spinner"></div>
+            <div class="pie filler"></div>
+        </div>
+    </div>
+
+    <div id="wrap">
+        <h1>Background image</h1>
+        <div class="wrapper" style="background:#fff url(img/Moon_and_James_2.png) no-repeat 0;">
+            <div class="pie spinner"></div>
+            <div class="pie filler"></div>
+            <div class="mask" style="background:#fff url(img/Moon_and_James_2.png) no-repeat 0;"></div>
+        </div>
+    </div>
+
+    <div id="wrap">
+        <h1>Opacity</h1>
+        <div class="wrapper" style="background:#fff url(https://ssl.pstatic.net/static/wm/stamp_v2/Moon_and_James/common/Moon_and_James_2.png) no-repeat 0;">
+            <div class="pie spinner" style="background:blue;opacity:0.7;"></div>
+            <div class="pie filler" style="background:orange"></div>
+            <div class="mask" style="background:#fff url(img/Moon_and_James_2.png) no-repeat 0;"></div>
+        </div>
+    </div>
+
+</body>
+</html>

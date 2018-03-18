@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>canvasPieGraph</title>
+<style type="text/css">
+#wrap{
+    width: 350px;
+    margin: 0 auto;
+}
+h1{
+    font-family:HelveticaNeue, AppleSDGothicNeo, sans-serif;
+    text-align:center;
+}
+.canvas_area{
+    width: 250px;
+    margin: 0 auto;
+}
+.canvas_area canvas{
+    border: 1px solid #eee;
+    background:url(img/Moon_and_James_2.png) no-repeat 50%;
+}
+</style>
+</head>
+<body>
+
+    <div id="wrap">
+        <h1>Canvas Pie Graph</h1>
+        <div class="canvas_area">
+            <canvas id="pieGraph" width="250" height="250"></canvas>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    function pieGraphDraw(canvasId,piePieceAll,piePiece,fillStyle,drawOption) {
+        // 캔버스 객체 생성
+        var canvas = document.getElementById(canvasId);
+        var cx = canvas.getContext("2d");
+        // 중앙값을 기준으로 삼음
+        var centerX = canvas.width / 2;
+        var centerY = canvas.height / 2;
+
+        // 인자값에 따른 분기 실행
+        if(drawOption == "motion"){
+            // 모션을 위한 각도 보정값 추가
+            var i = 0;
+            var motionValue = 20;
+            var piePieceAllMotion = piePieceAll * motionValue;
+            var piePieceMotion = piePiece * motionValue;
+            // setInterval
+            var pieGraphInterval = setInterval(function() {
+                i = i+1;
+                cx.clearRect(0, 0, canvas.width, canvas.height);
+                var drawRad = ((2 * Math.PI) / piePieceAllMotion) * i;
+                pieGraphDrawInner(drawRad);
+                if(i==piePieceMotion){
+                    clearInterval(pieGraphInterval);
+                }
+            }, motionValue);
+        } else {
+            var drawRad = ((2 * Math.PI) / piePieceAll * piePiece);
+            pieGraphDrawInner(drawRad);
+        }
+
+        // 원형 그래프 그리는 부분 - 공통
+        function pieGraphDrawInner(rad){
+            cx.fillStyle = fillStyle;
+            cx.beginPath();
+            cx.moveTo(centerX, centerY);
+            cx.arc(centerX, centerY, centerY, -0.5 * Math.PI, rad - 0.5 * Math.PI, false);
+            //cx.arc(centerX, centerY, centerY, 1.5 * Math.PI, rad + 1.5 * Math.PI, false);
+            cx.closePath();
+            cx.fill();
+            console.log("Start",-0.5 * Math.PI,"|","End",rad - 0.5 * Math.PI);
+            //console.log("Start",1.5 * Math.PI,"|","End",rad + 1.5 * Math.PI);
+        }
+    }
+    window.onload = function () {
+        // 인자 : 캔버스ID, 조각갯수, 그래프영역, 그래프색상, 모션
+        pieGraphDraw("pieGraph",8,2,"rgba(0, 255, 0, 0.7)","motion");
+    }
+    </script>
+
+</body>
+</html>

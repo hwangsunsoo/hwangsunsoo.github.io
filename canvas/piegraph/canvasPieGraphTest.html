@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>canvasPieGraphTest</title>
+<style type="text/css">
+.canvas_area{
+    position: relative;
+    float: left;
+    width: 210px;
+    height: 210px;
+    margin: 0 10px 10px 0;
+    border: 1px solid #eee;
+    background:url(img/Moon_and_James_23.png) no-repeat 50% 50%;
+}
+.canvas_area h2{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    margin: 0;
+    color: green;
+}
+.canvas_area canvas{
+    background: transparent;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Canvas test</h1>
+<div class="canvas_area"><h2>1/6</h2><canvas id="test1" width="210" height="210"></canvas></div>
+<div class="canvas_area"><h2>2/6</h2><canvas id="test2" width="210" height="210"></canvas></div>
+<div class="canvas_area"><h2>3/6</h2><canvas id="test3" width="210" height="210"></canvas></div>
+<div class="canvas_area"><h2>4/6</h2><canvas id="test4" width="210" height="210"></canvas></div>
+<div class="canvas_area"><h2>5/6</h2><canvas id="test5" width="210" height="210"></canvas></div>
+<div class="canvas_area"><h2>6/6</h2><canvas id="test6" width="210" height="210"></canvas></div>
+<div class="canvas_area"><h2>Motion</h2><canvas id="startMotion" width="210" height="210"></canvas></div>
+
+<script type="text/javascript">
+function start1() {
+
+    // 캔버스 시작
+    var canvas = document.getElementById("test1");
+    var cx = canvas.getContext("2d");
+    var centerX = centerY = 105;
+
+    //canvas.width = canvas.width;
+    var rad = ((2 * Math.PI) / 6) * 1; // 호의 길이를 구한다.
+    cx.translate(centerX, centerY);
+    cx.beginPath();
+    cx.moveTo(0, 0);
+    cx.arc(0, 0, 100, -0.5 * Math.PI, rad - 0.5 * Math.PI, false);
+    cx.lineTo(0, 0);
+    cx.fillStyle = "rgba(0, 255, 0, 0.7)";
+    cx.fill();
+}
+function start2() {
+
+    // 캔버스 시작
+    var canvas = document.getElementById("test2");
+    var cx = canvas.getContext("2d");
+    var centerX = centerY = 105;
+
+    //canvas.width = canvas.width;
+    var rad = ((2 * Math.PI) / 6) * 2; // 호의 길이를 구한다.
+    cx.translate(centerX, centerY);
+    cx.beginPath();
+    cx.moveTo(0, 0);
+    cx.arc(0, 0, 100, -0.5 * Math.PI, rad - 0.5 * Math.PI, false);
+    cx.lineTo(0, 0);
+    cx.fillStyle = "rgba(0, 255, 0, 0.7)";
+    cx.fill();
+}
+function start3() {
+
+    // 캔버스 시작
+    var canvas = document.getElementById("test3");
+    var cx = canvas.getContext("2d");
+    var centerX = centerY = 105;
+
+    //canvas.width = canvas.width;
+    var rad = ((2 * Math.PI) / 6) * 3; // 호의 길이를 구한다.
+    cx.translate(centerX, centerY);
+    cx.beginPath();
+    cx.moveTo(0, 0);
+    cx.arc(0, 0, 100, -0.5 * Math.PI, rad - 0.5 * Math.PI, false);
+    cx.lineTo(0, 0);
+    cx.fillStyle = "rgba(0, 255, 0, 0.7)";
+    cx.fill();
+}
+function start4() {
+
+    // 캔버스 시작
+    var canvas = document.getElementById("test4");
+    var cx = canvas.getContext("2d");
+    var centerX = centerY = 105;
+
+    //canvas.width = canvas.width;
+    var rad = ((2 * Math.PI) / 6) * 4; // 호의 길이를 구한다.
+    cx.translate(centerX, centerY);
+    cx.beginPath();
+    cx.moveTo(0, 0);
+    cx.arc(0, 0, 100, -0.5 * Math.PI, rad - 0.5 * Math.PI, false);
+    cx.lineTo(0, 0);
+    cx.fillStyle = "rgba(0, 255, 0, 0.7)";
+    cx.fill();
+}
+function start5() {
+
+    // 캔버스 시작
+    var canvas = document.getElementById("test5");
+    var cx = canvas.getContext("2d");
+    var centerX = centerY = 105;
+
+    //canvas.width = canvas.width;
+    var rad = ((2 * Math.PI) / 6) * 5; // 호의 길이를 구한다.
+    cx.translate(centerX, centerY);
+    cx.beginPath();
+    cx.moveTo(0, 0);
+    cx.arc(0, 0, 100, -0.5 * Math.PI, rad - 0.5 * Math.PI, false);
+    cx.lineTo(0, 0);
+    cx.fillStyle = "rgba(0, 255, 0, 0.7)";
+    cx.fill();
+}
+function start6() {
+
+    // 캔버스 시작
+    var canvas = document.getElementById("test6");
+    var cx = canvas.getContext("2d");
+    var centerX = centerY = 105;
+
+    //canvas.width = canvas.width;
+    var rad = ((2 * Math.PI) / 6) * 6; // 호의 길이를 구한다.
+    cx.translate(centerX, centerY);
+    cx.beginPath();
+    cx.moveTo(0, 0);
+    cx.arc(0, 0, 100, -0.5 * Math.PI, rad - 0.5 * Math.PI, false);
+    cx.lineTo(0, 0);
+    cx.fillStyle = "rgba(0, 255, 0, 0.7)";
+    cx.fill();
+}
+function startMotion() {
+
+    // 캔버스 시작
+    var canvas = document.getElementById("startMotion");
+    var cx = canvas.getContext("2d");
+    var centerX = centerY = 105;
+
+    var i = 0;
+    setInterval(function() {
+        i = i+1;
+        if(i==121){
+            i=0;
+        }
+        canvas.width = canvas.width;
+        var rad = ((2 * Math.PI) / 120) * i; // 호의 길이를 구한다.
+        cx.translate(centerX, centerY);
+        cx.beginPath();
+        cx.moveTo(0, 0);
+        cx.arc(0, 0, 100, -0.5 * Math.PI, rad - 0.5 * Math.PI, false);
+        cx.lineTo(0, 0);
+        cx.fillStyle = "rgba(0, 255, 0, 0.7)";
+        cx.fill();
+    }, 50);
+}
+start1();
+start2();
+start3();
+start4();
+start5();
+start6();
+startMotion();
+</script>
+
+</body>
+</html>
