@@ -53,6 +53,14 @@ body {
 	font-family: HelveticaNeue-Light, AppleSDGothicNeo-Light, sans-serif;
 	color: #24292e;
 }
+.blind {
+	position: absolute;
+	clip: rect(0 0 0 0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+}
 .wrap {
 	max-width: 600px;
 	margin: 0 auto;
