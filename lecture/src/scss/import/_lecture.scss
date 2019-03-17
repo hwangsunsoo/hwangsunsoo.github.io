@@ -409,13 +409,19 @@ hr{
 	&--breaktime{left:100px}
 	&--sketch{left:145px}
 	// right
-	&--list{right:55px}
+	&--list{
+		right:55px;
+
+		&.is-opened {
+			z-index: 101;
+		}
+	}
 	&--top{right:10px}
 
 }
 
 .table-of-contents-sub{
-	position:fixed;right:-300px;bottom:66px;box-sizing:border-box;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);
+	position:fixed;z-index:101;;right:-300px;bottom:66px;box-sizing:border-box;box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);
 	width:300px;height:300px;overflow-y:scroll;
 	border: 1px solid #eee;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);

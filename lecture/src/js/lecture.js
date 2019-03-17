@@ -158,6 +158,7 @@ $(window).load(function(){
 			$('.lecture-button--top').css('margin-right',0);
 			$('.table-of-contents-sub').animate({ 'right': '-300px' }, 500);
 			$(this).removeClass('is-opened');
+			$('.img-viewer').hide();
 		} else {
 			$('body').css({'overflow':'hidden'});
 			$('header').css('padding-right',scrollBarWidth+'px');
@@ -167,6 +168,7 @@ $(window).load(function(){
 			$('.lecture-button--top').css('margin-right',scrollBarWidth+'px');
 			$('.table-of-contents-sub').animate({ 'right': '10px' }, 500);
 			$(this).addClass('is-opened');
+			$('.img-viewer').fadeIn();
 		}
 	});
 
