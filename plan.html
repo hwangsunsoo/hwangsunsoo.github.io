@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>...</title>
+<style type="text/css">
+* {
+	margin: 0;
+}
+</style>
+</head>
+<body>
+
+<article id="article"></article>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+	const dateRead = new Date();
+	const year = dateRead.getFullYear();
+	const month = dateRead.getMonth()+1;
+	const monthNext = month+1;
+	const date = dateRead.getDate();
+	const dayOfMonth = fn_DayOfMonth(year, month);
+	const dayOfMonthNext = fn_DayOfMonth(year, month+1);
+	const article = document.getElementById('article');
+	const line = '--------------------------------------------------------------------------------------------------------';
+	let monthDayThis, monthDayNext, dayLabel;
+	
+	for(let i = date; i <= dayOfMonth; i++){
+		dayLabel = getInputDayLabel(month,i);
+		monthDayThis = `${month}/${i} ${dayLabel}`;
+		article.insertAdjacentHTML('beforeend','<p>'+monthDayThis+'</p>');
+		lineDraw();
+	}
+
+	for(let i = 1; i <= dayOfMonthNext; i++){
+		dayLabel = getInputDayLabel(monthNext,i);
+		monthDayNext = `${monthNext}/${i} ${dayLabel}`;
+		article.insertAdjacentHTML('beforeend','<p>'+monthDayNext+'</p>');
+		lineDraw();
+	}
+
+	function fn_DayOfMonth(year, month){
+		return 32 - new Date(year, month-1, 32).getDate();
+	}
+
+	function getInputDayLabel(month, date) {
+		let week = new Array('일', '월', '화', '수', '목', '금', '토');
+		let today = new Date(`${year}-${month}-${date}`).getDay();
+		let todayLabel = week[today];
+		return todayLabel;
+	}
+
+	function lineDraw() {
+		if(dayLabel === '일'){
+			article.insertAdjacentHTML('beforeend','<p>'+line+'</p>');
+			article.insertAdjacentHTML('beforeend','<p>'+line+'</p>');
+		} else if(dayLabel === '금'){
+			article.insertAdjacentHTML('beforeend','<p>'+line+'</p>');
+			article.insertAdjacentHTML('beforeend','<p>'+line+'</p>');
+		} else if(dayLabel === '토'){
+			// no line
+		} else {
+			article.insertAdjacentHTML('beforeend','<p>'+line+'</p>');
+		}
+	}
+
+</script>
+
+</body>
+</html>
