@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title>[웹게임] 끝말잇기</title>
+</head>
+
+<body>
+<!-- <div>제로초</div> -->
+<!-- <input type="text"> -->
+<!-- <button>등록</button> -->
+<!-- <div>딩동댕</div> -->
+<script>
+    var body = document.body;
+    var word = document.createElement('div');
+    word.textContent = '제로초';
+    body.append(word);
+    var form = document.createElement('form');
+    body.append(form);
+    var input = document.createElement('input');
+    form.append(input);
+    var button = document.createElement('button');
+    button.textContent = '입력';
+    form.append(button);
+    var answer = document.createElement('div');
+    body.append(answer);
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if (word.textContent[word.textContent.length - 1] === input.value[0] ){
+            answer.textContent = '딩동댕'
+            word.textContent = input.value;
+            input.value = "";
+            input.focus();
+        } else {
+            answer.textContent = '땡';
+            input.value = "";
+            input.focus();
+        }
+    });
+</script>
+</body>
+</html>

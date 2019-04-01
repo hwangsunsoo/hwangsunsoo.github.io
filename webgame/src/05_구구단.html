@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title>[웹게임] 구구단</title>
+</head>
+
+<body>
+    <h1 id="qiuz">구구단 게임</h1>
+
+    <form id="form">
+        <input id="input" type="text">
+        <button id="button" type="submit">입력</button>
+    </form>
+    <div id="answer"></div>
+
+    <script>
+        var num1 = Math.ceil(Math.random() * 9 ) + 1;
+        var num2 = Math.ceil(Math.random() * 9 ) + 1;
+        var result = num1 * num2;
+
+        var body = document.body;
+        var qiuz = document.getElementById('qiuz');
+        qiuz.textContent = String(num1) + '곱하기' + String(num2) + '는?'; 
+        var form = document.getElementById('form');
+        var input = document.getElementById('input');
+        // var button = document.getElementById('button');
+        var answer = document.getElementById('answer');
+
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            if ( result === Number(input.value) ) {
+                answer.textContent = '딩동댕'
+                num1 = Math.ceil(Math.random() * 9 ) + 1;
+                num2 = Math.ceil(Math.random() * 9 ) + 1;
+                result = num1 * num2;
+                qiuz.textContent = String(num1) + '곱하기' + String(num2) + '는?'; 
+                input.value = "";
+                input.focus();
+            } else {
+                answer.textContent = '땡';
+                input.value = "";
+                input.focus();
+            }
+        });
+    </script>
+</body>
+</html>

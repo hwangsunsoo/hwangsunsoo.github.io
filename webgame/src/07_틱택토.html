@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>[웹게임] 틱택토</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 20px;
+        }
+        p {
+            color: red;
+        }
+        span {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+<script>
+var 바디 = document.body;
+var 테이블 = document.createElement('table');
+var 줄들 = [];
+var 칸들 = [];
+var 턴 = 'X';
+var 결과 = document.createElement('p');
+var 딤드 = document.createElement('span');
+
+var 비동기콜백 = function (이벤트) {
+    var 몇줄 = 줄들.indexOf(이벤트.target.parentNode);
+    var 몇칸 = 칸들[몇줄].indexOf(이벤트.target);
+    console.log(몇줄,몇칸,이벤트.target);
+
+    if (칸들[몇줄][몇칸].textContent !== '') {
+        console.log('빈칸아님');
+    } else {
+        console.log('빈칸');
+        칸들[몇줄][몇칸].textContent = 턴;
+
+        var 다참 = false; // true = gameover
+        if (칸들[몇줄][0].textContent === 턴 && 칸들[몇줄][1].textContent === 턴 && 칸들[몇줄][2].textContent === 턴) {
+            다참 = true;
+            console.log('가로완성');
+        }
+        if (칸들[0][몇칸].textContent === 턴 && 칸들[1][몇칸].textContent === 턴 && 칸들[2][몇칸].textContent === 턴) {
+            다참 = true;
+            console.log('세로완성');
+        }
+        if (칸들[0][0].textContent === 턴 && 칸들[1][1].textContent === 턴 && 칸들[2][2].textContent === 턴) {
+            다참 = true;
+            console.log('좌상-우하 대각완성');
+        }
+        if (칸들[0][2].textContent === 턴 && 칸들[1][1].textContent === 턴 && 칸들[2][0].textContent === 턴) {
+            다참 = true;
+            console.log('우상-좌하 대각완성');
+        }
+        if (다참) {
+            결과.textContent = 턴 + '님이 승리!';
+            턴 = 'O';
+            바디.appendChild(딤드);
+        } else {
+            if (턴 === 'X') { 턴 = 'O'; }
+            else { 턴 = 'X'; }
+        }
+        console.log(다참);
+    }
+};
+
+for (var i = 1; i <= 3; i += 1) {
+    var 줄 = document.createElement('tr');
+    줄들.push(줄);
+    칸들.push([]);
+    for (var j = 1; j <= 3; j += 1) {
+        var 칸 = document.createElement('td');
+        칸.setAttribute('id',`${i-1}-${j-1}`); // id
+        칸.addEventListener('click', 비동기콜백);
+        칸들[i - 1].push(칸);
+        줄.appendChild(칸);
+    }
+    테이블.appendChild(줄);
+}
+바디.appendChild(테이블);
+바디.appendChild(결과);
+</script>
+</body>
+</html>

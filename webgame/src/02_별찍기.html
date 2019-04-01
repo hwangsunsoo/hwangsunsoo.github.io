@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title>[웹게임] 별찍기</title>
+</head>
+
+<body>
+
+<script>
+	for(var star = 1; star <= 5; star++) {
+		console.log( '*'.repeat(star) );
+	}
+
+	console.log('----------------------------------------');
+
+	for(var star = 5; star >= 1; star--) {
+		console.log( '*'.repeat(star) );
+	}
+
+	console.log('----------------------------------------');
+
+	for(var star = 5; star >= 1; star--) {
+		console.log( ' '.repeat(5-star) + '*'.repeat(star) );
+	}
+
+	console.log('----------------------------------------');
+
+	for(var star = 9; star >= 1; star = star-2) {
+		console.log( ' '.repeat((9-star)/2) + '*'.repeat(star) );
+	}
+
+	console.log('----------------------------------------');
+
+	for(var star = 1; star <= 5; star = star+2) {
+		console.log( ' '.repeat((5-star)/2) + '*'.repeat(star) );
+	}
+	for(var star = 5; star >= 1; star = star-2) {
+		console.log( ' '.repeat((5-star)/2) + '*'.repeat(star) );
+	}
+</script>
+
+</body>
+</html>

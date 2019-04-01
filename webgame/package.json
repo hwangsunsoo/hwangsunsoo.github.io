@@ -1,0 +1,35 @@
+{
+  "name": "lecture",
+  "version": "1.0.0",
+  "description": "-",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hwangsunsoo/hwangsunsoo.github.io.git"
+  },
+  "author": "hwangsunsoo@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.18.13",
+    "cheerio": "^1.0.0-rc.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-gm": "0.0.8",
+    "gulp-open": "^2.0.0",
+    "gulp-replace": "^0.6.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-webserver": "^0.9.1",
+    "gulp.spritesmith": "^6.5.1",
+    "os": "^0.1.1",
+    "run-sequence": "^2.1.0"
+  }
+}
