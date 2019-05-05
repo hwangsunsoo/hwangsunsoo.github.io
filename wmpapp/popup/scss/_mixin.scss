@@ -1,0 +1,345 @@
+@charset "UTF-8";
+
+@mixin blind {
+	position: absolute;
+	clip: rect(0 0 0 0);
+	clip: rect(0, 0, 0, 0);
+	width: 1px;
+	height: 1px;
+	margin-top: -1px;
+	margin-left: -1px;
+	padding: 0;
+	outline: 0;
+	font-size: 1px;
+	overflow: hidden;
+}
+
+@mixin unblind {
+	position: static;
+	clip: auto;
+	width: auto;
+	height: auto;
+	margin: 0;
+	font-size: inherit;
+}
+
+@mixin ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+@mixin ellipsis-multi($line_num) {
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: $line_num;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+}
+
+@mixin ellipsis-multi-pc($font-size, $line-num, $line-height) {
+	$leading : ($line-height - $font-size) * 0.5;
+
+	overflow: hidden;
+	display: -webkit-box;
+	max-height: ($line-height * $line-num) - $leading;
+	padding-bottom: $leading;
+  	line-height: $line-height;
+  	font-size: $font-size;
+  	-webkit-box-orient: vertical;
+  	-webkit-line-clamp: $line-num;
+}
+
+@mixin position($position, $args: ()) {
+	$offsets: top right bottom left;
+	position: $position;
+
+	@if $args == all {
+		top:0;left:0;right:0;bottom:0
+	} @else {
+
+		@each $offset in $offsets {
+			$index: index($args, $offset);
+
+			@if $index {
+				@if $index == length($args) {
+					#{$offset}: 0;
+				}
+				@else {
+					$next: nth($args, $index + 1);
+					@if is-valid-length($next) {
+						#{$offset}: $next;
+					}
+					@else if index($offsets, $next) {
+						#{$offset}: 0;
+					}
+					@else {
+						@warn "Invalid value `#{$next}` for offset `#{$offset}`.";
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity*100})';
+}
+
+@mixin background-size50($width, $height){
+	-webkit-background-size: $width/2 + px $height/2 + px;
+	background-size: $width/2 + px $height/2 + px;
+}
+
+@mixin background-cover {
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+@mixin border-radius($radius){
+	@if unitless($radius) == true {
+		-webkit-border-radius: $radius + px;
+		border-radius: $radius + px;
+	} @else {
+		-webkit-border-radius: $radius;
+		border-radius: $radius;
+	}
+}
+
+@mixin clear_fix() {
+	&:before, &:after {
+		content: '';
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin thumbnailBorderMask($color:#000, $opacity:0.03, $circle:false) {
+	&:before {
+		@include position(absolute, all);
+		@include opacity($opacity);
+		content: '';
+		z-index: 1;
+		border: 1px solid $color;
+		@if $circle == true {
+			border-radius: 50%;
+		}
+	}
+}
+
+@mixin thumbnailMask($color:#000, $opacity:0.03, $circle:false) {
+	&:before {
+		@include position(absolute, all);
+		@include opacity($opacity);
+		content: '';
+		z-index: 1;
+		background-color: $color;
+		@if $circle == true {
+			border-radius: 50%;
+		}
+	}
+}
+
+@mixin xScroll() {
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
+}
+
+@mixin yScroll() {
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+
+@mixin useragent($string: null){
+	$strings : (
+		ie: 'Trident'
+	)!global;
+
+	$get-string: map-get($strings, $string);
+
+	@if map-has-key($strings, $string) {
+		html[data-useragent*="#{$get-string}"]{
+			@content;
+		}
+	} @else {
+		html[data-useragent*="#{$string}"]{
+			@content;
+		}
+	}
+}
+
+@mixin boxShadow() {
+	-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+@mixin textGrad($grad) {
+	background: $grad;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+@mixin commonMediaQuery($media: 'tablet') {
+	@if $media == 'iphone5' {
+		@media (max-width: 374px) { @content; }
+	}
+	@else if $media == 'iphone6' {
+		@media (min-width: 375px) { @content; }
+	}
+	@else if $media == 'iphone6_landscape' {
+		@media (min-width: 667px) { @content; }
+	}
+	@else if $media == 'tablet' {
+		@media (min-width: 768px) and (orientation: portrait) { @content; }
+		@media (min-width: 1024px) { @content; }
+	}
+	@else if $media == 'tablet_landscape' {
+		@media (min-width: 1024px) and (orientation: landscape) { @content; }
+	}
+	@else if $media == 'android_landscape' {
+		@media (min-width: 450px) and (orientation: landscape) { @content; }
+	}
+	@else if $media == 'iphone7plus_landscape' {
+		@media (min-width: 736px) { @content; }
+	}
+	@else if $media == 'tablet_width' {
+		@media (min-width: 768px) { @content; }
+	}
+	@else if $media == 'wstreet_switch_min-width' {
+		@media (max-width: 320px) { @content; }
+	}
+	@else if $media == 'wstreet_switch_width' {
+		@media (min-width: 500px) { @content; }
+	}
+	@else if $media == '568px' {
+		@media (min-width: 568px) and (max-width: 666px){ @content; }
+	}
+}
+
+// 2의 제곱근 (sqrt(2) 적용 불가로 인해 변수로 추가)
+// @group CSS icon
+$sqrt_2: 1.41421356237;
+// X 모양 아이콘
+// @group CSS icon
+// @param {number} $size [21px] - 아이콘 넓이, 높이값 (반드시 짝수값 입력)
+// @param {number} $thick [2px] - 아이콘 내 막대의 두께값
+// @param {color} $color [#000] - 아이콘 막대 색상값
+// @param {number} $padding [0] - 아이콘 여백값
+// @param {inline-block/block} $display [inline-block] - display 속성값
+// @example .icon_cancel { iconCancel($size: 24px, $thick: 2px, $color: #000, $padding: 0, $display: inline-block); }
+// @example
+//	.icon_cancel {
+//		@include iconCancel(16px, 3px, #aaa, 5px, block);
+//		@include setCircleBackground(#eee);
+//	}
+@mixin iconCancel($size: 24px, $thick: 2px, $color: #000, $padding: 0, $display: inline-block) {
+	position: relative;
+	display: $display;
+	width: $size + $padding*2;
+	height: $size + $padding*2;
+
+	&:before, &:after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: round($size*$sqrt_2) - $thick;
+		height: $thick;
+		background-color: $color;
+	}
+
+	&:before {
+		transform: translate(-50%, -50%) rotate(45deg);
+	}
+
+	&:after {
+		transform: translate(-50%, -50%) rotate(135deg);
+	}
+}
+
+// 화살표형 아이콘 (보통, 이전[left]/다음[right] 또는 더보기[right], 접기[up]/펼치기[down] 버튼 아이콘으로 사용)
+// @group CSS icon
+// @param {string} $direction ['up'] - 화살표 방향 ('up', 'down', 'left', 'right')
+// @param {number} $width [50px] - 아이콘 넓이값
+// @param {number} $height [25px] - 아이콘 높이값
+// @param {number} $thick [2px] - 화살표 두께값
+// @param {color} $color [#000] - 화살표 색상값
+// @param {inline-block/block} $display [inline-block] - display 속성값
+// @example .icon_bullet_up { iconBullet($direction: 'up', $width: 50px, $height: 25px, $thick: 2px, $color: #222, $display: inline-block); }
+// @example
+// .icon_bullet_left {
+//		@include iconBullet('left', 52px, 26px, 2px);
+//		@include setIconShadow_type1(0, 1px, 4px, 0, rgba(0, 0, 0, 0.2));
+// }
+@mixin iconBullet($direction: 'up', $width: 50px, $height: 25px, $thick: 2px, $color: #222, $display: inline-block, $position: relative){
+	position: $position;
+	display: $display;
+	width: $width;
+	height: $height;
+	overflow: hidden;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+
+	@if ($direction == 'up' or $direction == 'down') {
+		$size: floor($width/$sqrt_2 - 2*$thick);
+		$rate: 2*$height/$width;
+		$margin-top : round($rate*$size/(2*$sqrt_2));
+
+		&:before {
+			width: $size;
+			height: $size;
+			@if ($rate == 1) {
+				transform: translate(-50%, -50%) rotate(45deg);
+			} @else {
+				transform: translate(-50%, -50%) scale(1, $rate) rotate(45deg);
+			}
+
+			@if ($direction == 'up') {
+				margin-top: $margin-top;
+				border-top: $thick solid $color;
+				border-left: $thick solid $color;
+			} @else if ($direction == 'down') {
+				margin-top: - $margin-top;
+				border-right: $thick solid $color;
+				border-bottom: $thick solid $color;
+			}
+		}
+	}  @else if ($direction == 'left' or $direction == 'right') {
+		$size: floor($height/$sqrt_2 - 2*$thick);
+		$rate: 2*$width/$height;
+		$margin-left : round($rate*$size/(2*$sqrt_2));
+
+		&:before {
+			width: $size;
+			height: $size;
+			transform: translate(-50%, -50%) scale($rate, 1) rotate(45deg);
+
+			@if ($direction == 'left') {
+				margin-left: $margin-left;
+				border-left: $thick solid $color;
+				border-bottom: $thick solid $color;
+			}  @else if ($direction == 'right') {
+				margin-left: - $margin-left;
+				border-top: $thick solid $color;
+				border-right: $thick solid $color;
+			}
+		}
+	}
+}

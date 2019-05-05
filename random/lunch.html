@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>점심 골라주세요</title>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+<style type="text/css">
+#start{display:block;width:100%;margin-top:25px;padding:15px 0;background:#337ab7;border:0;color:#fff;text-align:center;font-size:20px}
+</style>
+</head>
+<body>
+
+<div id="wrap" class="basic">
+
+	<header>
+		<h1>점심 골라주세요</h1>
+	</header>
+
+	<section id="section" class="section">
+
+		<article>
+
+			<h1>오늘의 점심</h1>
+			<p class="center"><img border="0" src="https://ssl.pstatic.net/static/wm/stamp_v2/Brown_and_Cony/common/Brown_and_Cony_66.png" width="140"></p>
+			<p class="center"><span id="your_lunch">메뉴를 고민하는 자여, 아래 버튼을 누르라.</span></p>
+			<p><button id="start">골라주세요!!</button></p>
+
+		</article>
+
+	</section>
+	<!-- //section -->
+
+</div>
+<!-- //wrap -->
+
+<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	function shuffle(o){
+		for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+		return o;
+	};
+
+	var myArray = [
+		"김치부대찌개",
+		"나라돈까스",
+		"등촌샤브샤브",
+		"매생이굴국밥",
+		"미정국수",
+		"밀숲",
+		"백스비빔밥",
+		"북창동순두부",
+		"북촌순두부",
+		"싸릿골해장국",
+		"석기정",
+		"수육국밥",
+		"신선설농탕",
+		"양평해장국",
+		"어부사시사",
+		"역전우동",
+		"원키친 카레&돈까스",
+		"역전우동",
+		"유타로",
+		"조가네순두부",
+		"진우동",
+		"청우밥사랑",
+		"킹콩부대찌개",
+		"큰양푼집",
+		"큰집추어탕",
+		"할매순대국",
+		"해물폭탄",
+	];
+
+	$("#start").click(function(){
+		newArray = shuffle(myArray);
+		console.log(newArray);
+		$("#your_lunch").html("<span>오늘은 <em>"+newArray[0]+"</em>을(를) 먹도록 하라!</span>");
+	});
+
+});
+</script>
+
+</body>
+</html>

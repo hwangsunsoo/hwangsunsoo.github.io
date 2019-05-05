@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title>app_popup</title>
+	<link rel="stylesheet" href="./css/app_popup.css">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+
+<body id="wrap">
+
+	<h1>150431053</h1>
+
+	<div class="app_popup" id="app_popup">
+
+		<div class="test_frame">
+
+			<div class="content_product">
+				<div class="area_detail">
+					<span class="label">오늘의 W추천</span>
+					<span class="summary" style="-webkit-box-orient:vertical">기간한정! 추가 쿠폰지원!</span>
+					<strong class="title_deal" style="-webkit-box-orient:vertical">[행사 오늘 마감!] CJ BEST 상품 모음전/비비고/햇반/유산균 200종/최대 9,600원 쿠폰할인!/서두르세요</strong>
+					<em class="price"><strong class="price_number">10,900</strong><span class="price_text">원 外</span></em>
+				</div>
+				<!-- 'area_thumbnail' 클래스에 'type_wide' 또는 'type_border' 추가 -->
+				<div class="area_thumbnail type_wide">
+					<div class="thumbnail" style="background-image: url(&quot;https://view01.wemep.co.kr/wmp-product/3/105/150431053/150431053.jpg?1551758567&quot;);"></div>
+					<i class="border_thumbnail"></i>
+				</div>
+				<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span></em>
+			</div>
+
+		</div><!-- //test_frame -->
+
+		<div class="test_frame">
+
+			<div class="content_product">
+				<div class="area_detail">
+					<span class="label">오늘의 W추천</span>
+					<span class="summary" style="-webkit-box-orient:vertical">기간한정! 추가 쿠폰지원!</span>
+					<strong class="title_deal" style="-webkit-box-orient:vertical">[행사 오늘 마감!] CJ BEST 상품 모음전/비비고/햇반/유산균 200종/최대 9,600원 쿠폰할인!/서두르세요</strong>
+					<em class="price"><strong class="price_number">10,900</strong><span class="price_text">원 外</span></em>
+				</div>
+				<!-- 'area_thumbnail' 클래스에 'type_wide' 또는 'type_border' 추가 -->
+				<div class="area_thumbnail type_wide">
+					<div class="thumbnail" style="background-image: url(&quot;https://view01.wemep.co.kr/wmp-product/3/105/150431053/150431053.jpg?1551758567&quot;);"></div>
+					<i class="border_thumbnail"></i>
+				</div>
+				<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span></em>
+			</div>
+
+		</div><!-- //test_frame -->
+
+		<div class="test_frame">
+
+			<div class="content_product">
+				<div class="area_detail">
+					<span class="label">오늘의 W추천</span>
+					<span class="summary" style="-webkit-box-orient:vertical">기간한정! 추가 쿠폰지원!</span>
+					<strong class="title_deal" style="-webkit-box-orient:vertical">[행사 오늘 마감!] CJ BEST 상품 모음전/비비고/햇반/유산균 200종/최대 9,600원 쿠폰할인!/서두르세요</strong>
+					<em class="price"><strong class="price_number">10,900</strong><span class="price_text">원 外</span></em>
+				</div>
+				<!-- 'area_thumbnail' 클래스에 'type_wide' 또는 'type_border' 추가 -->
+				<div class="area_thumbnail type_wide">
+					<div class="thumbnail" style="background-image: url(&quot;https://view01.wemep.co.kr/wmp-product/3/105/150431053/150431053.jpg?1551758567&quot;);"></div>
+					<i class="border_thumbnail"></i>
+				</div>
+				<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span></em>
+			</div>
+
+		</div><!-- //test_frame -->
+
+	</div><!-- //app_popup -->
+
+	<style>
+		#wrap {
+			padding: 10px;
+		}
+		#wrap h1 {
+			margin: 10px;
+		}
+		.app_popup .content_product {
+			z-index: 1;
+		}
+		.app_popup .summary {
+			color: #000;
+		}
+		.test_frame {
+			position: relative;
+			overflow: hidden;
+			display: inline-block;
+			width: 320px;
+			height: 568px;
+			border: 2px solid #000;
+			margin: 10px;
+			background-color: rgb(246, 211, 181);
+		}
+		.test_frame:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 150px;
+		}
+		.test_frame:after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 50px;
+		}
+		.test_frame:nth-child(2):before {
+			background-image: linear-gradient(rgb(209, 179, 154), rgb(246, 211, 181));
+		}
+		.test_frame:nth-child(2):after {
+			background-image: linear-gradient(rgb(246, 211, 181), rgb(209, 179, 154));
+		}
+		.test_frame:nth-child(3):before {
+			background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+		}
+		.test_frame:nth-child(3):after {
+			background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+		}
+	</style>
+
+</body>
+</html>
