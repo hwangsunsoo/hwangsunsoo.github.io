@@ -159,8 +159,8 @@
             doc.getElementById('price_text').textContent = result.price_text;
             doc.getElementById('thumbnailImg').style.backgroundImage = 'url('+result.img_app_onecut+')';
             /** [확인] 광고 노출 로그는 전송하지 않습니다~ 추후에 전송에 관한 얘기가 있을때 그때 전송합니다~ */
-            module.getAppInfoStateForParam(result);
-            module.setTrackingViewLogData(result);
+            // module.getAppInfoStateForParam(result);
+            // module.setTrackingViewLogData(result);
             module.lazyLoadImage(result.img_app_onecut);
         }, function() {
             module.lazyLoadImage(null);
