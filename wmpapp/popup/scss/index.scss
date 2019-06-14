@@ -1,0 +1,311 @@
+@import "_mixin.scss";
+
+// 앱 시작 팝업
+$app-popup-common-padding: 30px;
+$app-popup-background-bottom-rate: 32.83185840707964%;
+
+body {
+    position: relative;
+    margin: 0;
+	padding: 0;
+    font-family: 'Helvetica Neue', 'Apple SD Gothic Neo', sans-serif;
+    font-size: 14px;
+    line-height: 1.3;
+    text-size-adjust: none;
+}
+em {
+    font-style: normal;
+}
+button {
+    background: transparent;
+    border: 0;
+	outline: none;
+}
+.blind {
+	position: absolute;
+	clip: rect(0 0 0 0);
+	clip: rect(0, 0, 0, 0);
+	width: 1px;
+	height: 1px;
+	margin-top: -1px;
+	margin-left: -1px;
+	padding: 0;
+	outline: 0;
+	font-size: 1px;
+	overflow: hidden;
+}
+.app_popup {
+    @include position(fixed, top 0 left 0 right 0 bottom);
+    z-index: 200;
+    background: #f0efef;
+}
+.content_product {
+    @include position(absolute, top 50% left 50%);
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    min-width: 300px;
+    max-width: 720px;
+}
+.area_label_ad {
+    height: 16px;
+    padding: 0 $app-popup-common-padding 4px;
+    text-align: right;
+}
+.label_ad {
+    position: relative;
+    display: none;
+    width: 38px;
+    height: 16px;
+    border: 1px solid #c9c7c7;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+.text_ad {
+    @include position(absolute, top 50% left 50%);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    font-size: 11px;
+    line-height: 1;
+    color: #8a8a89;
+}
+.area_label_w {
+    padding: 0 $app-popup-common-padding 14px;
+    text-align: center;
+}
+.label_w {
+    position: relative;
+    display: inline-block;
+    width: 95px;
+    height: 22px;
+    background: linear-gradient(90deg, #dc4ed2, #bd3dc8);
+    border-radius: 3px;
+}
+.text_w {
+    @include position(absolute, top 50% left 50%);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 1;
+    color: #fff;
+}
+.area_detail {
+    padding: 0 $app-popup-common-padding 8px;
+    text-align: center;
+}
+.label_deal {
+    display: block;
+    padding-bottom: 4px;
+    font-size: 14px;
+    line-height: 1;
+    color: #11110f;
+    font-weight: 600;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-box-orient: vertical;
+}
+.title_deal {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    line-height: 1.3;
+    color: #0f0f0f;
+    font-weight: 400;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-box-orient: vertical;
+}
+.price {
+    display: block;
+    line-height: 1;
+    color: #0f0f0f;
+}
+.price_number {
+    font-size: 30px;
+    font-weight: 600;
+}
+.price_text {
+    margin-left: 1px;
+    font-size: 17px;
+}
+.area_thumbnail {
+    margin: 0 $app-popup-common-padding;
+}
+.thumbnail {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 6px;
+    background-color: #fff;
+    // background-size: cover;
+}
+.thumbnailImg {
+    @include position(absolute, all);
+    background-size: cover;
+}
+.area_button {
+    padding: 13px ($app-popup-common-padding + 33px) 0;
+    text-align: center;
+}
+.button {
+    position: relative;
+    min-width: 194px;
+    max-width: 233px;
+    height: 37px;
+    margin: 0 auto;
+    border: 1px solid #fff;
+    border-radius: 19px;
+    box-sizing: border-box;
+}
+.text_button {
+    @include position(absolute, top 50% left 50%);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 1;
+    color: #fff;
+    font-weight: 600;
+}
+.icon_arrow {
+    position: relative;
+    display: inline-block;
+    margin-left: 18px;
+}
+.icon_arrow_inner {
+    @include position(absolute, top -9px left -5px);
+    width: 8px;
+    height: 8px;
+    border: solid #fff;
+    border-width: 0 1px 1px 0;
+    transform: rotate(-45deg);
+}
+.link_product {
+    @include position(absolute, top 0 left 0 right 0 bottom 0);
+    z-index: 15;
+}
+.background_bottom {
+    @include position(absolute, left 0 right 0 bottom 0);
+    z-index: 1;
+    height: $app-popup-background-bottom-rate;
+    background: #d843e3;
+}
+.button_log {
+    @include position(fixed, top 0 left 0);
+    display: none;
+	z-index: 1000;
+	width: 70px;
+	height: 70px;
+}
+.view_log {
+    @include position(fixed, top 0 left 0);
+    display: none;
+	z-index: 1100;
+    width: 100%;
+	padding: 0 10px 15px;
+    background: rgba(234, 255, 0, 0.9);
+    overflow: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+	table {
+        position: relative;
+		width: 100%;
+		
+		th, td {
+			padding-top: 10px;
+			font-size: 13px;
+			line-height: 1.2em;
+		}
+		th {
+			padding-right: 10px;
+		}
+		button {
+			margin: 2px 4px 2px 0;
+			padding: 4px 8px;
+			background: #ffc9c9;
+			border: 1px solid #acaaaa;
+			box-sizing: border-box;
+		}
+		textarea {
+			width: 100%;
+			padding: 2px;
+			border: 1px solid #acaaaa;
+			box-sizing: border-box;
+			word-break: break-all;
+			resize: none;
+			font-size: 14px;
+            line-height: 1.3em;
+            font-family: 'Courier New', Courier, monospace;
+
+			&.type_url { height: 45px; }
+			&.type_userinfo { height: 110px; }
+			&.type_agent { height: 110px; }
+		}
+		input {
+			&.type_mid {
+				width: 100px;
+				height: 23px;
+				margin-right: 4px;
+				text-align: center;
+			}
+		}
+        input, textarea { &:read-only { background: #eaeaea; } }
+	}
+	.button_close {
+        @include position(absolute, top 5px left 5px);
+        padding: 0;
+	}
+	.icon_close {
+		@include iconCancel($size: 18px, $thick: 1px, $color: #000, $padding: 0, $display: inline-block);
+	}
+}
+
+@media (min-height: 900px) {
+    .background_bottom {
+        height: ($app-popup-background-bottom-rate + 10);
+    }
+}
+
+@media (min-width: 600px) {
+    .label_ad {
+        width: 46px;
+        height: 20px;
+        border-radius: 10px;
+    }
+    .text_ad {
+        font-size: 14px;
+    }
+    .label_w {
+        width: 105px;
+        height: 24px;
+    }
+    .text_w {
+        font-size: 16px;
+    }
+    .label_deal {
+        font-size: 19px;
+    }
+    .title_deal {
+        font-size: 18px;
+    }
+    .price_number {
+        font-size: 35px;
+    }
+    .price_text {
+        font-size: 22px;
+    }
+    .button {
+        max-width: 400px;
+        height: 42px;
+        border-radius: 21px;
+    }
+    .text_button {
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Slot Machine</title>
+	<script type="text/javascript" src="js/jindo.desktop.min.js"></script>
+	<script type="text/javascript" src="js/jindo_mobile_component.js"></script>
+	<script type="text/javascript" src="js/jindo.m.MovableCoord.js"></script>
+	<script type="text/javascript">
+		jindo.Component = jindo.m.Component;
+	</script>
+	<script type="text/javascript" src="js/jindo.Slide.js"></script>
+	<script type="text/javascript">
+
+		var lists = [];
+		function callback(_) { lists = _; }
+
+	</script>
+	<!-- type을 FE devtalk 횟수로 지정 (차수에 따라 여기 type 값만 변경하면 됨) -->
+	<!-- <script type="text/javascript" src="http://egjs.navercorp.com:6245/list?type=7&callback=callback"></script> -->
+	<script type="text/javascript">
+
+	var deptText = '당첨!';
+	var typeNumber = 1;
+
+	callback([
+		{'name': '홍길동', 'dept': deptText, 'type': typeNumber},
+		{'name': '이몽룡', 'dept': deptText, 'type': typeNumber},
+		{'name': '성춘향', 'dept': deptText, 'type': typeNumber},
+		{'name': '이순신', 'dept': deptText, 'type': typeNumber},
+		{'name': '강감찬', 'dept': deptText, 'type': typeNumber},
+	]);
+
+	</script>
+	<style type="text/css">
+
+		/*
+		@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+		@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+		@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+		@import url(http://fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+		@import url(http://fonts.googleapis.com/earlyaccess/kopubbatang.css);
+		*/
+		/* @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); */
+
+		html, body, h1, h2, h3, p, ul, li { padding:0; margin:0; }
+		html, body { font-size:1.2vw; height:100%; }
+		body {
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2e2e2e), color-stop(100%,#0c0c0c));
+			font-family: NanumSquare;
+			font-weight: bold;
+		}
+
+		ul { list-style:none; }
+		h1, .button-border {
+			display:inline-block;
+			position:absolute;
+			left:50%; margin-left:-4rem;
+			width:8rem; height:8rem;
+			overflow:hidden;
+		}
+
+		h1 {
+			display:none;
+			top:5rem;
+			text-indent:-999em;
+			background:url(mzl.feuqcmoe.png);
+			background-size:100% 100%;
+		}
+
+		.machine {
+			pointer-events:_none;
+			overflow:hidden; position:absolute; left:50%; top:5rem;
+			width:56rem; height:28rem; margin:0 -28.7rem;
+			border:.7rem solid #FCCF67; border-radius:2em;
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdd067), color-stop(23%,#fccd4d), color-stop(58%,#a36d04), color-stop(58%,#a36d04), color-stop(80%,#e7ba51), color-stop(100%,#9c6b03));
+			background-origin: border-box;
+			border: .7rem solid transparent;
+			box-shadow: inset -999rem 0 0 #111; /* The background color */
+		}
+
+		.machine .slot {
+			float:left; position:relative;
+			margin:1.5rem 0 0 1.5rem; overflow:hidden;
+			border:.5rem solid #000;
+			border-right-color:#333;
+			border-bottom-color:#444;
+			width:calc(33.33% - 1px - 3rem);
+			height:calc(100% - 4.0rem);
+		}
+
+		.machine ul, .machine ul li {
+			position:absolute; left:0; top:0; width:100%;
+			-webkit-perspective: 450px;
+			-moz-perspective: 450px;
+			-ms-perspective: 450px;
+			-o-perspective: 450px;
+			perspective: 450px;
+		}
+
+		.machine ul li {
+			height:15rem; font-size:12rem;
+			text-align:center; overflow:hidden;
+		}
+
+		.machine ul li .content {
+			position:relative;
+			height:100%;
+			background-color:#fff;
+			line-height:120%;
+		}
+
+		.machine ul li .content img {
+			width:80%; height:80%; margin-top:10%;
+		}
+
+		.button-border {
+			bottom:5rem;
+			padding:.7rem;
+			box-sizing:border-box;
+			border-radius:100%;
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffe963), color-stop(18%,#fccd4d), color-stop(37%,#ffe963), color-stop(38%,#5a1700), color-stop(71%,#ed9823), color-stop(100%,#ffed6c));
+		}
+
+		.button-border button {
+			width:100%; height:100%;
+			border:.2rem solid #9F0D00;
+			border-radius:100%;
+			cursor:pointer;
+			outline:0; text-indent:-999em; overflow:hidden;
+			box-shadow:.5rem .5rem 1rem #000;
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#500), color-stop(40%,#9F0D00), color-stop(60%,#9F0D00), color-stop(100%,#FF4100));
+			transition:.3s all ease;
+		}
+
+		.button-border button:hover {
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#400), color-stop(40%,#9F0D00), color-stop(60%,#9F0D00), color-stop(100%,#FF4100));
+			box-shadow:.9rem .9rem 1rem #000; -webkit-transform:scale(1.02);
+			transition:.1s all ease;
+		}
+
+		.button-border button:active {
+			box-shadow:inset .6rem .6rem 2rem #000;
+			-webkit-transform:scale(0.98);
+		}
+
+		.disabled .machine, .disabled .button-border {
+			pointer-events:none;
+		}
+
+		#result {
+			opacity:0;
+			transition:.3s all ease;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background-color: rgba(0,0,0,.5);
+			z-index: 9;
+			cursor: pointer;
+			pointer-events:none;
+		}
+
+		#result .content {
+			-webkit-transform:translateY(-100%);
+			transition:.3s all ease;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			width: 6em;
+			height: 1.5em;
+			padding: .5em;
+			background-color: #fff;
+			border-radius: 20px;
+			text-align: center;
+			font-size: 9rem;
+			line-height: 1;
+		}
+
+		#result.show {
+			pointer-events:auto;
+			opacity:1;
+		}
+
+		#result.show .content {
+			-webkit-transform:translateY(0);
+		}
+
+		#result .department {
+			font-size:2.5rem;
+		}
+
+		#result :not(.department) {
+			padding-top: 2.5rem;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Slot Machine</h1>
+	<div class="machine">
+		<div id="slot0" class="slot"><ul class="list"></ul></div>
+		<div id="slot1" class="slot"><ul class="list"></ul></div>
+		<div id="slot2" class="slot"><ul class="list"></ul></div>
+	</div>
+	<div id="result">
+		<div class="content">
+			<div class="department">공통플랫폼개발랩</div>
+			<div class="name">최영규</div>
+		</div>
+	</div>
+	<div class="button-border"><button id="start">Start</button></div>
+	<script type="text/javascript">
+
+		var candis = [ ['<img src="img/7.png">','<img src="img/7.png">','<img src="img/7.png">'] ];
+		for (var i = 0; i < lists.length; i++) {
+			/^(.)(.)(.*)?$/.test(lists[i].name);
+			candis.push([ RegExp.$1, RegExp.$2, RegExp.$3 || '' ]);
+			console.log([ RegExp.$1, RegExp.$2, RegExp.$3 || '' ]);
+		}
+
+		// for (var i = 0; i < 500; i++) {
+		// 	candis.push([
+		// 		Math.floor(Math.random() * 10),
+		// 		Math.floor(Math.random() * 10),
+		// 		Math.floor(Math.random() * 10)
+		// 	].join(''));
+		// }
+
+		var htmls = [ [], [], [] ];
+		for (var i = 0; i < Math.min(5, candis.length); i++) {
+
+			var candi = candis[i];
+
+			htmls[0].push('<li class="item"><div class="content">' + candi[0] + '<div></li>');
+			htmls[1].push('<li class="item"><div class="content">' + candi[1] + '<div></li>');
+			htmls[2].push('<li class="item"><div class="content">' + candi[2] + '<div></li>');
+
+		}
+
+		for (var i = 0; i < htmls.length; i++) {
+			jindo.$Element('slot' + i).query('ul').html(htmls[i].join(''));
+		}
+
+		var aInst = [];
+
+		var elDummy = null;
+		var fEl = function() { return elDummy; };
+
+		var oKeyframe = new jindo.m.Keyframe();
+
+		oKeyframe.set(0.0, [ fEl, {
+			'@transform' : 'rotateX(80deg)', '@transformOriginY' : '100%',
+			'@background' : '#fff'
+		} ]);
+		oKeyframe.set(0.5, [ fEl, {
+			'@transform' : 'rotateX(0)', '@transformOriginY' : jindo.m.Effect.stepStart('100%'),
+			'@background' : '#ccc'
+		} ]);
+		oKeyframe.set(1.0, [ fEl, {
+			'@transform' : 'rotateX(-80deg)', '@transformOriginY' : jindo.m.Effect.stepStart('0%'),
+			'@background' : '#444'
+		} ]);
+
+		oKeyframe.preprocess();
+
+		function createSlide(idx) {
+
+			aInst[idx] = new jindo.Slide(jindo.$('slot' + idx), {
+				bFixed : false,
+				bHorizontal : false,
+				nContentCount : candis.length,
+				sAlignment : 'center',
+				bCircular : true
+			}).attach({
+				'setContent' : function(oCustomEvent) {
+					var nContentIndex = oCustomEvent.nContentIndex;
+
+					var welItem = jindo.$Element(oCustomEvent.elItem);
+					var welContent = welItem.query('.content');
+
+					welContent.html(candis[nContentIndex][idx]);
+				},
+				'setKeyframe' : function(oCustomEvent) {
+
+					elDummy = jindo.$$.getSingle('.content', oCustomEvent.elItem);
+					oKeyframe.frame(oCustomEvent.nRate, true);
+
+				}
+			}).setTo(0);
+
+		}
+
+		createSlide(0);
+		createSlide(1);
+		createSlide(2);
+
+		var idx = 0;
+
+		aInst[2].attach('animationEnd', function() {
+
+			var welResult = jindo.$Element('result');
+			if (idx) {
+
+				document.body.className = '';
+
+				welResult.query('.department').text(lists[idx - 1].dept);
+				welResult.query('.name').text(lists[idx - 1].name);
+
+				welResult.addClass('show');
+
+			}
+
+		});
+
+		jindo.$Element('start').attach('click', function(oEvent) {
+
+			var len = candis.length;
+			var random = Math.floor(Math.random() * (len - 1)) + 1;
+
+			document.body.className = 'disabled';
+
+			var by = random - idx;
+			while (by < 100) { by += len; }
+
+			aInst[0].setBy(by, 20000);
+			aInst[1].setBy(by, 20000);
+			aInst[2].setBy(by, 20000);
+
+			idx = random;
+
+			oEvent.stopDefault();
+
+		});
+
+		jindo.$Element('result').attach('click', function(oEvent) {
+
+			jindo.$Element('result').removeClass('show');
+
+			idx = 0;
+
+			aInst[0].setTo(0, 300);
+			aInst[1].setTo(0, 300);
+			aInst[2].setTo(0, 300);
+
+		});
+
+	</script>
+
+</body>
+</html>

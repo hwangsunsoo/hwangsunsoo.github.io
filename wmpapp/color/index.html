@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title>color test</title>
+	<script src="Color-Picker-Plugin-jQuery-MiniColors/jquery.1.10.2.min.js"></script>
+	<script src="Color-Picker-Plugin-jQuery-MiniColors/jquery.minicolors.js"></script>
+	<link rel="stylesheet" href="Color-Picker-Plugin-jQuery-MiniColors/jquery.minicolors.css">
+	<script>
+		$(document).ready( function() {
+			$('.demo').each( function() {
+				//
+				// Dear reader, it's actually very easy to initialize MiniColors. For example:
+				//
+				//  $(selector).minicolors();
+				//
+				// The way I've done it below is just for the demo, so don't get confused
+				// by it. Also, data- attributes aren't supported at this time...they're
+				// only used for this demo.
+				//
+				$(this).minicolors({
+					control: $(this).attr('data-control') || 'hue',
+					defaultValue: $(this).attr('data-defaultValue') || '',
+					format: $(this).attr('data-format') || 'hex',
+					keywords: $(this).attr('data-keywords') || '',
+					inline: $(this).attr('data-inline') === 'true',
+					letterCase: $(this).attr('data-letterCase') || 'lowercase',
+					opacity: $(this).attr('data-opacity'),
+					position: $(this).attr('data-position') || 'bottom',
+					swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
+					change: function(value, opacity) {
+					if( !value ) return;
+					if( opacity ) value += ', ' + opacity;
+					if( typeof console === 'object' ) {
+						console.log(value);
+					}
+					},
+					theme: 'bootstrap'
+				});
+			});
+		});
+	</script>
+	<style>
+		body, input, textarea, select, button, table {
+			font-family: -apple-system, 'Helvetica Neue', 'Apple SD Gothic Neo', sans-serif;
+			font-size: 16px;
+			line-height: 1;
+		}
+		body {
+			margin: 0;
+			background: #d9d9d9;
+		}
+		p {
+			margin: 0;
+		}
+		em {
+			font-style: normal;
+		}
+		.card {
+			position: relative;
+			width: 320px;
+			margin: 10px auto;
+			padding: 20px 15px;
+			background: #fff;
+			box-sizing: border-box;
+			box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
+		}
+		.title_card {
+			display: block;
+			color: #3a3a3a;
+		}
+		.input_color_hex,
+		.input_color_rgb,
+		.result_text {
+			font-family: 'Courier New', Courier, monospace;
+		}
+		.input_color_hex,
+		.input_color_rgb {
+			padding: 4px 0;
+			border: 1px solid #000;
+			font-size: 18px;
+			text-align: center;
+		}
+		.area_input_hex .minicolors {
+			width: 160px;
+			margin: 0 auto;
+			text-align: right;
+		}
+		.area_input_hex .minicolors-swatch {
+			border-color: #000;
+		}
+		.input_color_hex {
+			width: 120px;
+			margin-top: 3px;
+			padding-left: 0 !important;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+		}
+		.area_input_rgb {
+			text-align: center;
+		}
+		.input_color_rgb {
+			width: 50px;
+		}
+		.button_submit {
+			display: block;
+			width: 180px;
+			height: 30px;
+			line-height: 30px;
+			margin: 20px auto 0;
+			background: #643eff;
+			background: linear-gradient(145deg, #643eff, #27d8ea);;
+			border: 0;
+			border-radius: 15px;
+			box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
+			font-size: 15px;
+			color: #fff;
+		}
+		.area_result {
+			margin-top: 20px;
+		}
+		.area_result_inner {
+			margin-top: 10px;
+		}
+		.result_color,
+		.result_label,
+		.result_text {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.result_text#logText {
+			line-height: 1.4;
+		}
+		.result_color {
+			width: 40px;
+			height: 40px;
+			border: 1px solid #000;
+		}
+		.result_label {
+			width: 60px;
+			margin-right: 6px;
+			padding: 4px 0;
+			background: #888;
+			border-radius: 4px;
+			font-size: 14px;
+			color: #fff;
+			text-align: center;
+		}
+		.pass_label {
+			padding: 0 6px;
+			background: #888;
+			border-radius: 4px;
+			font-size: 14px;
+			color: #fff;
+		}
+		.pass_label.passed {
+			background: #4e84ff;
+		}
+		.pass_label.failed {
+			background: #ff5c64;
+		}
+		.origin_color_wide {
+			padding: 15px;
+			border: 1px solid #000;
+			text-align: center;
+		}
+		.view_box {
+			display: inline-block;
+			margin: 5px;
+			padding: 5px 10px;
+		}
+		.info_text {
+			margin: 10px 0;
+			line-height: 1.3;
+			font-size: 14px;
+			color: #888;
+			text-align: center;
+		}
+		.link_text {
+			color: #4e84ff;
+		}
+		.text_before_price:before {
+			content: '특가 25,000원';
+		}
+		.text_before_label:before {
+			content: 'W추천';
+		}
+		.label {
+			position: relative;
+			display: inline-block;
+			margin-bottom: 10px;
+			padding: 4px 10px;
+			font-size: 12px;
+			color: #fff;
+		}
+		.label.type_w {
+			background: linear-gradient(145deg, #f754a8, #c946ea);
+		}
+		.label_border {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border: 1px solid #fff;
+			opacity: 0;
+		}
+		.label.type_ad .label_border {
+			border-color: #fff;
+			opacity: 1;
+		}
+		.summary {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			display: block;
+			margin-bottom: 6px;
+			font-size: 16px;
+			line-height: 1;
+			color: #b7b7b7;
+		}
+		.title_deal {
+			display: -webkit-box;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			word-wrap: break-word;
+			margin-bottom: 6px;
+			font-size: 19px;
+			line-height: 1.3;
+		}
+		.price {
+			display: block;
+			line-height: 1;
+			color: #f754a8;
+		}
+		.price_number {
+			font-size: 22px;
+		}
+		.price_text {
+			margin-left: 1px;
+			font-size: 17px;
+		}
+		.button {
+			position: relative;
+			z-index: 1;
+			display: block;
+			width: 200px;
+			height: 36px;
+			line-height: 36px;
+			margin: 10px auto 0;
+			background: linear-gradient(145deg, #f754a8, #c946ea);
+			color: #fff;
+			font-size: 14px;
+			text-align: center;
+		}
+		.icon_arrow {
+			position: relative;
+			display: inline-block;
+			margin-left: 10px;
+			vertical-align: top;
+		}
+		.icon_arrow_inner {
+			position: absolute;
+			top: 14px;
+			left: 0;
+			width: 8px;
+			height: 8px;
+			border: solid #fff;
+			border-width: 0 1px 1px 0;
+			transform: rotate(-45deg);
+		}
+		.botton_border {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border: 1px solid #fff;
+			opacity: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="card">
+		<div class="area_input_hex">
+			<input type="text" id="valueHex" class="input_color_hex form-control demo" value="#a4252c">
+			<p class="info_text">대입하면 위 색상 기준으로 연산합니다.</p>
+		</div>
+		<button id="buttonHEXsubmit" class="button_submit">HEX 대입하기</button>
+	</div>
+
+	<div class="card">
+		<div class="area_input_rgb">
+			<span>R: <input type="tel" id="valueR" class="input_color_rgb" value="255"></span>
+			<span>G: <input type="tel" id="valueG" class="input_color_rgb" value="255"></span>
+			<span>B: <input type="tel" id="valueB" class="input_color_rgb" value="255"></span>
+			<p class="info_text">0 ~ 255 숫자로만 입력하세요.</p>
+		</div>
+		<button id="buttonRGBsubmit" class="button_submit">RGB 대입하기</button>
+	</div>
+
+	<div class="card">
+		<strong class="title_card">분석결과</strong>
+		<div class="area_result">
+			<div class="area_result_inner">
+				<span id="originRGB" class="result_color"></span>
+				<span class="result_label">입력색</span>
+				<span id="originRGBtext" class="result_text"></span>
+			</div>
+			<div class="area_result_inner">
+				<span id="invertRGB" class="result_color"></span>
+				<span class="result_label">반전색</span>
+				<span id="invertRGBtext" class="result_text"></span>
+			</div>
+			<div class="area_result_inner">
+				<span id="complementRGB" class="result_color"></span>
+				<span class="result_label">보색</span>
+				<span id="complementRGBtext" class="result_text"></span>
+			</div>
+			<div class="area_result_inner">
+				<span class="result_label">명암차</span>
+				<span id="brightnessResultText" class="result_text"></span>
+			</div>
+			<div class="area_result_inner">
+				<span class="result_label">색상차</span>
+				<span id="contrastResultText" class="result_text"></span>
+			</div>
+			<p class="info_text">
+				명암차, 색생차는 입력색, 반전색 간 차이<br>
+				(소수점 3자리까지 표기)<br>
+				<a class="link_text" href="https://www.w3.org/TR/AERT/#color-contrast" target="_blank">통과: 명암차는 125 이상, 색상차는 400 이상</a>
+			</p>
+			<div class="area_result_inner">
+				<div id="originRGBwide1" class="origin_color_wide">
+					<p class="view_box" style="display:block;font-size:18px;line-height:1.2;">
+						<span id="invertLabelText" class="view_text text_before_price"></span>
+						<span class="view_text text_before_price" style="color:#f8f849;"></span><br>
+						<span class="view_text text_before_price" style="color:#ff4b16;"></span>
+						<span class="view_text text_before_price" style="color:#727272;"></span><br>
+						<span class="view_text text_before_price" style="color:#fff;"></span>
+						<span class="view_text text_before_price" style="color:#000;"></span>
+					</p>
+					<p class="view_box" style="background:linear-gradient(145deg, #f754a8, #c946ea)">
+						<span class="view_text text_before_label" style="color:#fff;"></span>
+					</p>
+					<p id="invertLabelBack" class="view_box">
+						<span id="invertLabelBackText1" class="view_text text_before_label"></span>
+						<span class="view_text text_before_label" style="color:#fff;"></span>
+						<span class="view_text text_before_label" style="color:#000;"></span>
+					</p>
+					<p class="view_box" style="background:#fff">
+						<span id="invertLabelBackText2" class="view_text text_before_label"></span>
+						<span class="view_text text_before_label" style="color:#000;"></span>
+					</p>
+					<p class="view_box" style="background:#000">
+						<span id="invertLabelBackText3" class="view_text text_before_label"></span>
+						<span class="view_text text_before_label" style="color:#fff;"></span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="card">
+		<strong class="title_card">판단결과<em id="decisionView"></em></strong>
+		<div class="area_result">
+			<div class="area_result_inner">
+				<div id="originRGBwide2" class="origin_color_wide" style="text-align:left;">
+					<span class="label type_w" id="label_w">오늘의 W추천<i id="label_border" class="label_border"></i></span>
+					<span class="label type_ad" id="label_ad">광고<i id="ad_border" class="label_border"></i></span>
+					<span class="summary" id="summary" style="-webkit-box-orient:vertical">추가 포인트 (5%) 증정 이벤트</span>
+					<strong class="title_deal" id="title" style="-webkit-box-orient:vertical">[투데이특가] ★MD추천★ 20만 포인트+10,000P 증정 추가 포인트 (5%) 증정 이벤트</strong>
+					<em class="price" id="price"><strong class="price_number" id="price_number">200,000</strong><span class="price_text" id="price_text">원</span></em>
+					<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span><i id="botton_border" class="botton_border"></i></em>
+				</div>
+			</div>
+		</div>
+		<p class="info_text">
+			same-black, very-dark, dark,<br>
+			middle, light, very-light, same-white<br>
+			보정 값 반영하여 위 7개 유형 중 하나로 판단<br>
+			<a class="link_text" href="https://stackoverflow.com/questions/6423961/colors-white-if-background-is-dark-and-black-when-is-light" target="_blank">공식: (0.3 * R) + (0.6 * G) + (0.1 * B)</a>
+		</p>
+	</div>
+
+	<div class="card">
+		<strong class="title_card">Log</strong>
+		<div class="area_result">
+			<p id="logText" class="result_text"></p>
+		</div>
+	</div>
+
+	<script>
+		const doc = document;
+		initColorHEX();
+
+		let buttonHEXsubmit = doc.getElementById('buttonHEXsubmit');
+		buttonHEXsubmit.addEventListener('click', initColorHEX);
+
+		let buttonRGBsubmit = doc.getElementById('buttonRGBsubmit');
+		buttonRGBsubmit.addEventListener('click', initColorRGB);
+
+		function initColorHEX() {
+			let strHex = doc.getElementById('valueHex').value;
+			let nR = parseInt(strHex.substr(1,2),16);
+			let nG = parseInt(strHex.substr(3,2),16);
+			let nB = parseInt(strHex.substr(5,2),16);
+			doc.getElementById('valueR').value = nR;
+			doc.getElementById('valueG').value = nG;
+			doc.getElementById('valueB').value = nB;
+			initColor(nR,nG,nB);
+		}
+
+		function initColorRGB() {
+			let nR = Number(doc.getElementById('valueR').value);
+			let nG = Number(doc.getElementById('valueG').value);
+			let nB = Number(doc.getElementById('valueB').value);
+			let toHEX = `#${nR.toString(16)}${nG.toString(16)}${nB.toString(16)}`;
+			doc.getElementsByClassName('minicolors-swatch-color')[0].style.backgroundColor = `rgb(${nR},${nG},${nB})`;
+			doc.getElementById('valueHex').value = toHEX;
+			initColor(nR,nG,nB);
+		}
+
+		function initColor(nR,nG,nB){
+			let sumRGB = `rgb(${nR},${nG},${nB})`;
+
+			let invertValue = 255;
+			let invertRGB = `rgb(${invertValue-nR},${invertValue-nG},${invertValue-nB})`;
+
+			let big = (nR>nG)&&(nR>nB)?nR:(nB>nG?nB:nG);
+			let small = (nG>nR)&&(nB>nR)?nR:(nG>nB?nB:nG);
+			let bigPlusSmall = big + small;
+			let complementRGB = `rgb(${(bigPlusSmall)-nR},${(bigPlusSmall)-nG},${(bigPlusSmall)-nB})`;
+
+			/*
+				명암, 색차 구하는 공식 (W3C 표준)
+				- https://www.w3.org/TR/AERT/#color-contrast
+				- https://www.thinkoutsidetheslide.com/color-contrast-calculator/
+			*/
+			let brightnessOrigin = ((nR*299)+(nG*587)+(nB*114)) / 1000;
+			let brightnessInvert = (((invertValue-nR)*299)+((invertValue-nG)*587)+((invertValue-nB)*114)) / 1000;
+			let brightness = Math.max(brightnessOrigin,brightnessInvert) - Math.min(brightnessOrigin,brightnessInvert);
+			if(brightness >= 125) {
+				brightnessResult = 'Passed';
+			} else {
+				brightnessResult = 'Failed';
+			}
+
+			let contrast = (Math.max(nR,invertValue-nR) - Math.min(nR,invertValue-nR)) + (Math.max(nG,invertValue-nG) - Math.min(nG,invertValue-nG)) + (Math.max(nB,invertValue-nB) - Math.min(nB,invertValue-nB));
+			let contrastResult;
+			if(contrast >= 400) { // W3C는 500 이상 권장
+				contrastResult = 'Passed';
+			} else {
+				contrastResult = 'Failed';
+			}
+
+			/*
+				Colors: White if background is DARK and BLACK when is LIGHT
+				https://stackoverflow.com/questions/6423961/colors-white-if-background-is-dark-and-black-when-is-light
+				어두우면 0에 가깝고 밝으면 255에 가깝게 산출
+			*/
+			let darkRate = (0.3 * nR) + (0.6 * nG) + (0.1 * nB);
+			let rateBasic = 255 / 14;
+			let darkResult;
+			if(darkRate >= 0 && darkRate < rateBasic)                    { darkResult = 'same-black'; }
+			else if(darkRate >= rateBasic && darkRate < rateBasic*2)     { darkResult = 'very-dark'; }
+			else if(darkRate >= rateBasic*2 && darkRate < rateBasic*3)   { darkResult = 'very-dark'; }
+			else if(darkRate >= rateBasic*3 && darkRate < rateBasic*4)   { darkResult = 'very-dark'; }
+			else if(darkRate >= rateBasic*4 && darkRate < rateBasic*5)   { darkResult = 'dark'; }
+			else if(darkRate >= rateBasic*5 && darkRate < rateBasic*6)   { darkResult = 'dark'; }
+			else if(darkRate >= rateBasic*6 && darkRate < rateBasic*7)   { darkResult = 'middle'; }
+			else if(darkRate >= rateBasic*7 && darkRate < rateBasic*8)   { darkResult = 'middle'; }
+			else if(darkRate >= rateBasic*8 && darkRate < rateBasic*9)   { darkResult = 'middle'; }
+			else if(darkRate >= rateBasic*9 && darkRate < rateBasic*10)  { darkResult = 'light'; }
+			else if(darkRate >= rateBasic*10 && darkRate < rateBasic*11) { darkResult = 'very-light'; }
+			else if(darkRate >= rateBasic*11 && darkRate < rateBasic*12) { darkResult = 'very-light'; }
+			else if(darkRate >= rateBasic*12 && darkRate < rateBasic*13) { darkResult = 'very-light'; }
+			else if(darkRate >= rateBasic*13 && darkRate <= rateBasic*14) { darkResult = 'same-white'; }
+			else { darkResult = 'error'; }
+			console.log(darkRate,darkResult,rateBasic);
+			doc.getElementById('decisionView').textContent = ` (${darkResult})`;
+
+			let basicGradient = 'linear-gradient(145deg, #f754a8, #c946ea)';
+			if(darkResult === 'same-black'){
+
+				doc.getElementById('label_w').style.background = basicGradient;
+				doc.getElementById('label_w').style.color = '#fff';
+				doc.getElementById('label_border').style.opacity = 0.1;
+				doc.getElementById('label_ad').style.color = '#fff';
+				doc.getElementById('ad_border').style.borderColor = '#fff';
+				doc.getElementById('summary').style.color = '#ce9db7';
+				doc.getElementById('title').style.color = '#fff';
+				doc.getElementById('price').style.color = '#f754a8';
+				doc.getElementById('button').style.background = basicGradient;
+				doc.getElementById('button').style.color = '#fff';
+				doc.getElementById('icon_arrow_inner').style.borderColor = '#fff';
+				doc.getElementById('botton_border').style.opacity = 0.3;
+
+			} else if(darkResult === 'very-dark') {
+
+				doc.getElementById('label_w').style.background = invertRGB;
+				doc.getElementById('label_w').style.color = '#000';
+				doc.getElementById('label_border').style.opacity = 0;
+				doc.getElementById('label_ad').style.color = '#fff';
+				doc.getElementById('ad_border').style.borderColor = '#fff';
+				doc.getElementById('summary').style.color = '#dfd888';
+				doc.getElementById('title').style.color = '#fff';
+				doc.getElementById('price').style.color = invertRGB;
+				doc.getElementById('button').style.background = invertRGB;
+				doc.getElementById('button').style.color = '#000';
+				doc.getElementById('icon_arrow_inner').style.borderColor = '#000';
+				doc.getElementById('botton_border').style.opacity = 0;
+
+			} else if(darkResult === 'dark') {
+
+				doc.getElementById('label_w').style.background = invertRGB;
+				doc.getElementById('label_w').style.color = '#000';
+				doc.getElementById('label_border').style.opacity = 0;
+				doc.getElementById('label_ad').style.color = '#fff';
+				doc.getElementById('ad_border').style.borderColor = '#fff';
+				doc.getElementById('summary').style.color = '#dfd888';
+				doc.getElementById('title').style.color = '#fff';
+				doc.getElementById('price').style.color = '#f8f849';
+				doc.getElementById('button').style.background = invertRGB;
+				doc.getElementById('button').style.color = '#000';
+				doc.getElementById('icon_arrow_inner').style.borderColor = '#000';
+				doc.getElementById('botton_border').style.opacity = 0;
+
+			} else if(darkResult === 'middle') {
+
+				doc.getElementById('label_w').style.background = '#000';
+				doc.getElementById('label_w').style.color = '#fff';
+				doc.getElementById('label_border').style.opacity = 0;
+				doc.getElementById('label_ad').style.color = '#000';
+				doc.getElementById('ad_border').style.borderColor = '#000';
+				doc.getElementById('summary').style.color = '#000';
+				doc.getElementById('title').style.color = '#fff';
+				doc.getElementById('price').style.color = '#f8f849';
+				doc.getElementById('button').style.background = '#000';
+				doc.getElementById('button').style.color = '#fff';
+				doc.getElementById('icon_arrow_inner').style.borderColor = '#fff';
+				doc.getElementById('botton_border').style.opacity = 0;
+
+			} else if(darkResult === 'light') {
+
+				doc.getElementById('label_w').style.background = invertRGB;
+				doc.getElementById('label_w').style.color = '#fff';
+				doc.getElementById('label_border').style.opacity = 0;
+				doc.getElementById('label_ad').style.color = '#000';
+				doc.getElementById('ad_border').style.borderColor = '#000';
+				doc.getElementById('summary').style.color = '#434343';
+				doc.getElementById('title').style.color = '#000';
+				doc.getElementById('price').style.color = invertRGB;
+				doc.getElementById('button').style.background = invertRGB;
+				doc.getElementById('button').style.color = '#fff';
+				doc.getElementById('icon_arrow_inner').style.borderColor = '#fff';
+				doc.getElementById('botton_border').style.opacity = 0;
+
+			} else if(darkResult === 'very-light') {
+
+				doc.getElementById('label_w').style.background = basicGradient;
+				doc.getElementById('label_w').style.color = '#fff';
+				doc.getElementById('label_border').style.opacity = 0;
+				doc.getElementById('label_ad').style.color = '#434343';
+				doc.getElementById('ad_border').style.borderColor = '#434343';
+				doc.getElementById('summary').style.color = '#434343';
+				doc.getElementById('title').style.color = '#000';
+				doc.getElementById('price').style.color = '#ff4b16';
+				doc.getElementById('button').style.background = basicGradient;
+				doc.getElementById('button').style.color = '#fff';
+				doc.getElementById('icon_arrow_inner').style.borderColor = '#fff';
+				doc.getElementById('botton_border').style.opacity = 0;
+
+			} else if(darkResult === 'same-white') {
+
+				doc.getElementById('label_w').style.background = basicGradient;
+				doc.getElementById('label_w').style.color = '#fff';
+				doc.getElementById('label_border').style.opacity = 0;
+				doc.getElementById('label_ad').style.color = '#868686';
+				doc.getElementById('ad_border').style.borderColor = '#bfbebe';
+				doc.getElementById('summary').style.color = '#727272';
+				doc.getElementById('title').style.color = '#000';
+				doc.getElementById('price').style.color = '#ff4b16';
+				doc.getElementById('button').style.background = basicGradient;
+				doc.getElementById('button').style.color = '#fff';
+				doc.getElementById('icon_arrow_inner').style.borderColor = '#fff';
+				doc.getElementById('botton_border').style.opacity = 0;
+				
+			} else {
+				console.log('보정색 오류');
+			}
+
+			doc.getElementById('originRGB').style.background = sumRGB;
+			doc.getElementById('originRGBtext').textContent = sumRGB;
+			doc.getElementById('originRGBwide1').style.background = sumRGB;
+			doc.getElementById('originRGBwide2').style.background = sumRGB;
+
+			doc.getElementById('invertRGB').style.background = invertRGB;
+			doc.getElementById('invertRGBtext').textContent = invertRGB;
+
+			doc.getElementById('complementRGB').style.background = complementRGB;
+			doc.getElementById('complementRGBtext').textContent = complementRGB;
+
+			doc.getElementById('brightnessResultText').innerHTML = `${brightness.toFixed(3)} <span class="pass_label ${brightnessResult.toLowerCase()}">${brightnessResult}</span>`;
+			doc.getElementById('contrastResultText').innerHTML = `${contrast.toFixed(3)} <span class="pass_label ${contrastResult.toLowerCase()}">${contrastResult}</span>`;
+
+			doc.getElementById('invertLabelText').style.color = invertRGB;
+			doc.getElementById('invertLabelBack').style.background = invertRGB;
+			doc.getElementById('invertLabelBackText1').style.color = sumRGB;
+			doc.getElementById('invertLabelBackText2').style.color = sumRGB;
+			doc.getElementById('invertLabelBackText3').style.color = sumRGB;
+
+			let resultTotal = `
+				origin: ${sumRGB}<br>
+				invert: ${invertRGB}<br>
+				complement: ${complementRGB}<br>
+				brightness: ${brightness.toFixed(3)} (${brightnessResult})<br>
+				contrast: ${contrast.toFixed(3)} (${contrastResult})<br>
+				darkRate: ${darkRate.toFixed(3)}<br>
+				darkResult: ${darkResult}
+			`;
+			doc.getElementById('logText').innerHTML = resultTotal;
+		}
+	</script>
+
+</body>
+</html>

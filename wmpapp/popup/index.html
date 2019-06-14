@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" id="wstreet_app_popup">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>앱시작팝업</title>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+</head>
+<body id="wrap">
+    <div class="app_popup" id="app_popup">
+    <!-- <div class="app_popup" id="app_popup"> -->
+        <div class="content_product">
+            <div class="area_label_ad"><span class="label_ad" id="label_ad"><em class="text_ad">광고</em></span></div>
+            <div class="area_label_w"><span class="label_w"><em class="text_w">오늘의 W추천</em></span></div>
+            <div class="area_detail">
+                <span class="label_deal" id="label_deal">&nbsp;</span>
+                <strong class="title_deal" id="title_deal">&nbsp;</strong>
+                <em class="price"><strong class="price_number" id="price_number">&nbsp;</strong><span class="price_text" id="price_text"></span></em>
+            </div>
+            <div class="area_thumbnail">
+                <div class="thumbnail" id="thumbnail">
+                    <div class="thumbnailImg" id="thumbnailImg" style="display:none"></div>
+                </div>           
+            </div>
+            <div class="area_button">
+                <div class="button"><span class="text_button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner"></i></span></span></div>
+            </div>
+        </div>
+        <a class="link_product" id="link_product">
+            <span class="blind">터치하면 헤당 상품 상세페이지로 이동합니다.</span>
+        </a>
+        <span class="background_bottom"></span>
+    </div>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

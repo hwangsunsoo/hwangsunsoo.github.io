@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title>app_popup</title>
+	<link rel="stylesheet" href="./css/app_popup.css">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+
+<body id="wrap">
+
+	<div class="app_popup" id="app_popup">
+
+		<div class="content_product">
+			<div class="area_detail">
+				<span class="label" id="label"></span>
+				<span class="summary" id="summary" style="-webkit-box-orient:vertical"></span>
+				<strong class="title_deal" id="title" style="-webkit-box-orient:vertical"></strong>
+				<em class="price"><strong class="price_number" id="price"></strong><span class="price_text" id="price_text"></span></em>
+			</div>
+			<!-- 'area_thumbnail' 클래스에 'type_wide' 또는 'type_border' 추가 -->
+			<div class="area_thumbnail type_wide">
+				<div class="thumbnail" id="thumbnail"></div>
+				<i class="border_thumbnail"></i>
+			</div>
+			<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span></em>
+		</div>
+
+	</div>
+
+	<div id="test">
+		<button id="item_test" class="button_test">TEST</button>
+		<button id="item_1" class="button_test">러시아대게</button>
+		<button id="item_2" class="button_test">오션파크</button>
+		<button id="item_3_1" class="button_test">퍼즐매트1</button>
+		<button id="item_3_2" class="button_test">퍼즐매트2</button>
+		<button id="item_4" class="button_test">샤워기헤드</button>
+		<button id="item_5" class="button_test">호주청정우</button>
+		<button id="item_6" class="button_test">무선마우스</button>
+		<button id="item_7" class="button_test">홈플러스</button>
+		<button id="item_8" class="button_test">아쿠아리움</button>
+		<button id="item_9" class="button_test">속초켄싱턴</button>
+		<button id="item_10" class="button_test">옥탑방고양이</button>
+		<button id="close_test" class="button_test">닫기</button>
+	</div>
+
+	<div id="test2">
+		<span id="invertRGB" class="rgb_test">반전색</span>
+		<span id="complementRGB" class="rgb_test">보색</span>
+	</div>
+
+	<script>
+		/*
+			반전과 보색 https://blog.naver.com/designer2021/220824248452
+			이미지 색상 추출 http://www.colorfavs.com/
+		*/
+		
+		const item_test = {
+			label: '오늘의 W추천',
+			summary: '문화의날 1인 관람권',
+			title: '[대학로] 연극 옥탑방고양이 7년연속 연극 예매율 1위!',
+			price: 9900,
+			price_text: '원',
+			thumbnail: 'http://img.wemep.co.kr/deal/6/578/3105786/9de4b06cd4655192c45972b2cf3c54b9fdb4d475.jpg',
+			valueR: 242,
+			valueG: 123,
+			valueB: 187,
+		};
+		const item_1 = {
+			label: '오늘의 W추천',
+			summary: '후기 대박 청춘홍게',
+			title: '청춘홍게 러시아 대게 자숙 이보다 저렴할 순 없다',
+			price: 29900,
+			price_text: '원 外',
+			thumbnail: 'http://img.wemep.co.kr/deal/4/074/4240744/a4bd0c5697378130744e8ea7cd7b39e6319862b5.jpg',
+			valueR: 164,
+			valueG: 37,
+			valueB: 44,
+		};
+		const item_2 = {
+			label: '오늘의 W추천',
+			summary: '01. 종일권(~3/31)대소공통',
+			title: '[슈퍼투데이특가] 천안 오션파크~5/3 4월 중 야외존 오픈예정!',
+			price: 11900,
+			price_text: '원',
+			thumbnail: 'http://img.wemep.co.kr/deal/8/575/4375758/edf02460df43e3a8456e294dddaa594dcc08357f.jpg',
+			valueR: 170,
+			valueG: 206,
+			valueB: 232,
+		};
+		const item_3_1 = {
+			label: '오늘의 W추천',
+			summary: '01. 0312Y00125 투데이홈 다용도 퍼즐 매트 기준',
+			title: '다용도 퍼즐 매트 4+3 파격가!!',
+			price: 2500,
+			price_text: '원',
+			thumbnail: 'https://view01.wemep.co.kr/wmp-deal/1/590/600125901/600125901.jpg?1552386240',
+			valueR: 255,
+			valueG: 255,
+			valueB: 255,
+		};
+		const item_3_2 = {
+			label: '오늘의 W추천',
+			summary: '01. 0312Y00125 투데이홈 다용도 퍼즐 매트 기준',
+			title: '다용도 퍼즐 매트 4+3 파격가!!',
+			price: 2500,
+			price_text: '원',
+			thumbnail: 'https://view01.wemep.co.kr/wmp-deal/1/590/600125901/600125901.jpg?1552386240',
+			valueR: 234,
+			valueG: 218,
+			valueB: 207,
+		};
+		const item_4 = {
+			label: '오늘의 W추천',
+			summary: '01. [무료배송] 강블리라이프 수압상승 샤워기헤드 기준',
+			title: '[무료배송] 강블리라이프 수압상승 샤워기헤드',
+			price: 5900,
+			price_text: '원',
+			thumbnail: 'https://view01.wemep.co.kr/wmp-product/1/894/100658941/100658941.jpg?1552274852',
+			valueR: 0,
+			valueG: 0,
+			valueB: 0,
+		};
+		const item_5 = {
+			label: '오늘의 W추천',
+			summary: '호주청정우안창/부채/차돌박이',
+			title: '[투데이특가] 호주청정우 안창살200g 6팩-1팩 더 8팩-2팩 10팩-4개 증정',
+			price: 4500,
+			price_text: '원',
+			thumbnail: 'http://img.wemep.co.kr/deal/0/490/4384900/4fc8261264ba4e2afd0c98e412ee6308505bf58e.jpg',
+			valueR: 41,
+			valueG: 45,
+			valueB: 48,
+		};
+		const item_6 = {
+			label: '오늘의 W추천',
+			summary: '가성비 짱!! 득템찬스',
+			title: '[무료배송] GPOP 가성비 무선마우스 어머! 이건사야해!!',
+			price: 7500,
+			price_text: '원 外',
+			thumbnail: 'http://img.wemep.co.kr/deal/5/296/1552965/9771e53e80d3d4e434cc29e59dae1a9c3ee4d67a.jpg',
+			valueR: 97,
+			valueG: 78,
+			valueB: 61,
+		};
+		const item_7 = {
+			label: '오늘의 W추천',
+			summary: '1만원권 최대 10% 한정할인',
+			title: '[프로모션] 홈플러스 모바일쿠폰 1만원권 최대 10% 한정할인',
+			price: 9000,
+			price_text: '원',
+			thumbnail: 'http://img.wemep.co.kr/deal/7/960/4389607/54308e08ba9f78ceb4753031f48391cf054280da.jpg',
+			valueR: 248,
+			valueG: 221,
+			valueB: 210,
+		};
+		const item_8 = {
+			label: '오늘의 W추천',
+			summary: '한정수량 10매!',
+			title: '[반값특가] 잠실 롯데 아쿠아리움 한정/파격/특가 롯데월드 아쿠아리움',
+			price: 9900,
+			price_text: '원',
+			thumbnail: 'http://img.wemep.co.kr/deal/8/376/4383768/acd04e1f28623e287de6fe3b7dcb760d2b58df10.jpg',
+			valueR: 85,
+			valueG: 129,
+			valueB: 148,
+		};
+		const item_9 = {
+			label: '오늘의 W추천',
+			summary: '★ 속초시내5분 / 전용비치 ★',
+			title: '[반값특가] 속초 켄싱턴리조트, 단독 단독특가 / 한정수량 판매 후 종료',
+			price: 59900,
+			price_text: '원',
+			thumbnail: 'http://img.wemep.co.kr/deal/8/597/4385978/db9c62b7daa84846fd1a5004c5ba7f026f95710f.jpg',
+			valueR: 1,
+			valueG: 122,
+			valueB: 207,
+		};
+		const item_10 = {
+			label: '오늘의 W추천',
+			summary: '문화의날 1인 관람권',
+			title: '[대학로] 연극 옥탑방고양이 7년연속 연극 예매율 1위!',
+			price: 9900,
+			price_text: '원',
+			thumbnail: 'http://img.wemep.co.kr/deal/6/578/3105786/9de4b06cd4655192c45972b2cf3c54b9fdb4d475.jpg',
+			valueR: 40,
+			valueG: 24,
+			valueB: 113,
+		};
+
+		const doc = document;
+
+		function initProduct(objectItem){
+
+			let nR = objectItem.valueR;
+			let nG = objectItem.valueG;
+			let nB = objectItem.valueB;
+
+			let sumRGB = `rgb(${nR},${nG},${nB})`;
+
+			let invertValue = 255;
+			let invertRGB = `rgb(${invertValue-nR},${invertValue-nG},${invertValue-nB})`;
+
+			let big = (nR>nG)&&(nR>nB)?nR:(nB>nG?nB:nG);
+			let small = (nG>nR)&&(nB>nR)?nR:(nG>nB?nB:nG);
+			let bigPlusSmall = big + small;
+			let complementRGB = `rgb(${(bigPlusSmall)-nR},${(bigPlusSmall)-nG},${(bigPlusSmall)-nB})`;
+
+			let resultRGB = invertRGB;
+
+			doc.getElementById('app_popup').style.background = sumRGB;
+			doc.getElementById('label').textContent = objectItem.label;
+			doc.getElementById('summary').textContent = objectItem.summary;
+			doc.getElementById('title').textContent = objectItem.title;
+			doc.getElementById('price').textContent = numberWithCommas(objectItem.price);
+			doc.getElementById('price_text').textContent = objectItem.price_text;
+			doc.getElementById('thumbnail').style.backgroundImage = 'url("'+objectItem.thumbnail+'")';
+
+			doc.getElementById('label').style.background = resultRGB;
+			doc.getElementById('label').style.color = sumRGB;
+			doc.getElementById('price').style.color = resultRGB;
+			doc.getElementById('price_text').style.color = resultRGB;
+			doc.getElementById('button').style.background = resultRGB;
+			doc.getElementById('button').style.color = sumRGB;
+			doc.getElementById('icon_arrow_inner').style.borderColor = sumRGB;
+
+			/*
+				명암, 색차 구하는 공식 (W3C 표준)
+				- https://www.w3.org/TR/AERT/#color-contrast
+				- https://www.thinkoutsidetheslide.com/color-contrast-calculator/
+			*/
+			let brightness = ((nR*299)+(nG*587)+(nB*114)) / 1000;
+			let contrast = (Math.max(nR,invertValue-nR) - Math.min(nR,invertValue-nR)) + (Math.max(nG,invertValue-nG) - Math.min(nG,invertValue-nG)) + (Math.max(nB,invertValue-nB) - Math.min(nB,invertValue-nB));
+			let brightnessResult, contrastResult;
+
+			if(brightness > 125) {
+				brightnessResult = 'pass';
+			} else {
+				brightnessResult = 'fail';
+			}
+
+			if(contrast > 500) {
+				contrastResult = 'pass';
+			} else {
+				contrastResult = 'fail';
+			}
+
+			if(brightnessResult === 'fail' && contrastResult === 'fail') {
+				doc.getElementById('summary').style.color = 'rgb(255,255,255)';
+				doc.getElementById('title').style.color = 'rgb(255,255,255)';
+			} else if(brightness === 0){
+				doc.getElementById('summary').style.color = 'rgb(255,255,255)';
+				doc.getElementById('title').style.color = 'rgb(255,255,255)';
+			} else {
+				doc.getElementById('summary').style.color = 'rgb(0,0,0)';
+				doc.getElementById('title').style.color = 'rgb(0,0,0)';
+			}
+
+			let checkBlackWhite;
+			if(nR <= 50 && nG <= 50 && nB <= 50) {
+				checkBlackWhite = 'black';
+			} else if(nR >= 205 && nG >= 205 && nB >= 205) {
+				checkBlackWhite = 'white';
+			} else if(brightness < 150 && contrast < 150) {
+				checkBlackWhite = 'black';
+			} else {
+				checkBlackWhite = null;
+			}
+
+			let highlightBlack = 'rgb(255,253,91)';
+			let highlightWhite = 'rgb(254,69,45)';
+			if(checkBlackWhite === 'black') {
+				doc.getElementById('label').style.background = highlightBlack;
+				doc.getElementById('price').style.color = highlightBlack;
+				doc.getElementById('price_text').style.color = highlightBlack;
+				doc.getElementById('button').style.background = highlightBlack;
+			} else if(checkBlackWhite === 'white') {
+				doc.getElementById('label').style.background = highlightWhite;
+				doc.getElementById('price').style.color = highlightWhite;
+				doc.getElementById('price_text').style.color = highlightWhite;
+				doc.getElementById('button').style.background = highlightWhite;
+			} else {
+			}
+
+			console.log('RGB: '+sumRGB+' / 반전색: '+invertRGB+' / 보색: '+complementRGB+' / 명암: '+brightness+'('+brightnessResult+') / 색차: '+contrast+'('+contrastResult+')'+' / checkBlackWhite: '+checkBlackWhite);
+			doc.getElementById('invertRGB').style.background = invertRGB;
+			doc.getElementById('complementRGB').style.background = complementRGB;
+		}
+
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		}
+
+		initProduct(item_test);
+		$('#item_test').click(function() { initProduct(item_test); });
+		$('#item_1').click(function() { initProduct(item_1); });
+		$('#item_2').click(function() { initProduct(item_2); });
+		$('#item_3_1').click(function() { initProduct(item_3_1); });
+		$('#item_3_2').click(function() { initProduct(item_3_2); });
+		$('#item_4').click(function() { initProduct(item_4); });
+		$('#item_5').click(function() { initProduct(item_5); });
+		$('#item_6').click(function() { initProduct(item_6); });
+		$('#item_7').click(function() { initProduct(item_7); });
+		$('#item_8').click(function() { initProduct(item_8); });
+		$('#item_9').click(function() { initProduct(item_9); });
+		$('#item_10').click(function() { initProduct(item_10); });
+		$('#close_test').click(function() { $('#test').hide(); });
+	</script>
+
+	<style>
+		#test {
+			position: fixed;
+			z-index: 100;
+			bottom: 2px;
+			right: 0;
+			width: 80px;
+		}
+		.button_test {
+			width: 100%;
+			height: 20px;
+			line-height: 20px;
+			margin: 2px 0;
+			background: rgba(0,0,0,0.5);
+			color: #fff;
+			font-size: 12px;
+		}
+		#test2 {
+			position: fixed;
+			z-index: 100;
+			top: 0;
+			right: 0;
+			font-size: 0;
+		}
+		.rgb_test {
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			font-size: 12px;
+		}
+	</style>
+
+</body>
+</html>

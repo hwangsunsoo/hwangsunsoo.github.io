@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>식사멤버추첨기</title>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+<style type="text/css">
+.basic .section{
+	max-width: 800px;
+}
+#wrap,#start{
+	font-family: NanumSquare;
+}
+#start{
+	display: inline-block;
+	width: 100%;
+	max-width: 300px;
+	margin: 20px 0;
+	padding: 15px 0;
+	background: #00c73c;
+	border: 0;
+	color: #fff;
+	text-align: center;
+	font-size: 22px;
+}
+#your_lunch p{
+	margin:  20px 0;
+	font-size: 22px;
+	line-height: 22px;
+	color: #00c73c;
+}
+#your_lunch em{
+	color: #000;
+}
+#your_lunch span.week{
+	display: inline-block;
+	width: 150px;
+	text-align: left;
+	color: #00c73c;
+}
+#your_lunch span.default{
+	color: #4099ff;
+}
+#your_lunch .bar{
+	display: inline-block;
+	width: 2px;
+	height: 14px;
+	margin: 0 10px;
+	background: #00c73c;
+}
+#your_lunch .bar.blank{
+	background: #fff;
+}
+#your_lunch .blank_text{
+	display: inline-block;
+	width: 60.05px;
+}
+</style>
+</head>
+<body>
+
+<div id="wrap" class="basic">
+
+	<header>
+		<h1>식사멤버추첨기</h1>
+	</header>
+
+	<section id="section" class="section">
+
+		<article>
+
+			<h1>이달의 팀점 (<span class="month_view"></span>월)</h1>
+			<div class="center"><img border="0" src="https://ssl.pstatic.net/static/wm/stamp_v2/Sally_Special/common/Sally_Special_10.png"></div>
+			<div class="center"><button id="start">추첨하기</button></div>
+			<div class="center"><div id="your_lunch"></div></div>
+
+		</article>
+
+	</section>
+	<!-- //section -->
+
+</div>
+<!-- //wrap -->
+
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	var dateRead = new Date();
+	// var thisMonth = 9;
+	var thisMonth = dateRead.getMonth();
+	// dateRead.setMonth(thisMonth-1);
+	dateRead.setMonth(thisMonth);
+	dateRead.setDate(1);
+	var month = dateRead.getMonth() + 1;
+	var fakeDay = dateRead.getDay();
+	var firstFriday = 0;
+	var firstFriday1 = 0;
+	var firstFriday2 = 0;
+	var firstFriday3 = 0;
+	var firstFriday4 = 0;
+	var firstFriday5 = 0;
+	if(fakeDay === 0){
+		firstFriday = firstFriday + 6;
+	} else if(fakeDay === 1){
+		firstFriday = firstFriday + 5;
+	} else if(fakeDay === 2){
+		firstFriday = firstFriday + 4;
+	} else if(fakeDay === 3){
+		firstFriday = firstFriday + 3;
+	} else if(fakeDay === 4){
+		firstFriday = firstFriday + 2;
+	} else if(fakeDay === 5){
+		firstFriday = firstFriday + 1;
+	} else if(fakeDay === 6){
+		firstFriday = firstFriday + 7;
+	}
+	var weekValue = 0;
+	var secondWeekStart = false; // true, false
+	if(secondWeekStart === true){
+		weekValue = 7;
+	}
+	firstFriday1 = firstFriday + weekValue;
+	firstFriday2 = firstFriday + weekValue + 7;
+	firstFriday3 = firstFriday + weekValue + 14;
+	firstFriday4 = firstFriday + weekValue + 21;
+	firstFriday5 = firstFriday + weekValue + 28;
+
+	var thisMonthlastDay = ( new Date( dateRead.getYear(), thisMonth, 0) ).getDate();
+	//onsole.log(thisMonthlastDay);
+
+	if(firstFriday4 > thisMonthlastDay){
+		var calc = firstFriday4 - thisMonthlastDay;
+		firstFriday4 = (thisMonth + 1)+'월'+calc;
+	} else if(firstFriday5 > thisMonthlastDay){
+		var calc = firstFriday5 - thisMonthlastDay;
+		firstFriday5 = (thisMonth + 1)+'월'+calc;
+	}
+
+	$(".month_view").html(month);
+
+	var memberDefault = "<span class='default'>팀장</span>";
+
+	var memberArray = [
+		"팀원01",
+		"팀원02",
+		"팀원03",
+		"팀원04",
+		"팀원05",
+		"팀원06",
+		"팀원07",
+		"팀원08",
+		"팀원09",
+		"팀원10",
+		"팀원11",
+		"팀원12",
+		"팀원13",
+		"팀원14",
+		"팀원15",
+		"팀원16",
+		"팀원17",
+		"팀원18",
+		"팀원19",
+	];
+
+	$("#start").click(function(){
+		ramdomArray = shuffle(memberArray);
+		//console.log(ramdomArray);
+
+		$("#your_lunch").html("\
+			<p><span class='week'>1주차 ("+firstFriday1+"일)</span><em>"+memberDefault+"<i class='bar'></i>"+ramdomArray[0]+"<i class='bar'></i>"+ramdomArray[4]+"<i class='bar'></i>"+ramdomArray[8]+"<i class='bar'></i>"+ramdomArray[12]+"<i class='bar'></i>"+ramdomArray[16]+"</em></p>\
+			<p><span class='week'>2주차 ("+firstFriday2+"일)</span><em>"+memberDefault+"<i class='bar'></i>"+ramdomArray[1]+"<i class='bar'></i>"+ramdomArray[5]+"<i class='bar'></i>"+ramdomArray[9]+"<i class='bar'></i>"+ramdomArray[13]+"<i class='bar'></i>"+ramdomArray[17]+"</em></p>\
+			<p><span class='week'>3주차 ("+firstFriday3+"일)</span><em>"+memberDefault+"<i class='bar'></i>"+ramdomArray[2]+"<i class='bar'></i>"+ramdomArray[6]+"<i class='bar'></i>"+ramdomArray[10]+"<i class='bar'></i>"+ramdomArray[14]+"<i class='bar'></i>"+ramdomArray[18]+"</em></p>\
+			<p><span class='week'>4주차 ("+firstFriday4+"일)</span><em>"+memberDefault+"<i class='bar'></i>"+ramdomArray[3]+"<i class='bar'></i>"+ramdomArray[7]+"<i class='bar'></i>"+ramdomArray[11]+"<i class='bar'></i>"+ramdomArray[15]+"<i class='bar blank'></i><i class='blank_text'></i></em></p>\
+		");
+	});
+
+	function shuffle(o){
+		for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+		return o;
+	}
+
+});
+</script>
+
+</body>
+</html>

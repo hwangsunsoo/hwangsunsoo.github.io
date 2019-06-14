@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<title>app_popup</title>
+	<link rel="stylesheet" href="./css/app_popup.css">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+
+<body id="wrap">
+
+	<div class="app_popup" id="app_popup">
+
+		<div class="test_frame" style="background: #fff;">
+
+			<div class="content_product">
+				<div class="area_detail">
+					<span class="label">오늘의 W추천</span>
+					<span class="summary" style="-webkit-box-orient:vertical">기간한정! 추가 쿠폰지원!</span>
+					<strong class="title_deal" style="-webkit-box-orient:vertical">[행사 오늘 마감!] CJ BEST 상품 모음전/비비고/햇반/유산균 200종/최대 9,600원 쿠폰할인!/서두르세요</strong>
+					<em class="price"><strong class="price_number">10,900</strong><span class="price_text">원 外</span></em>
+				</div>
+				<!-- 'area_thumbnail' 클래스에 'type_wide' 또는 'type_border' 추가 -->
+				<div class="area_thumbnail type_wide">
+					<div class="thumbnail" style="background-image: url(&quot;https://view01.wemep.co.kr/wmp-deal/4/633/600136334/600136334_large.jpg?1552465909&quot;);"></div>
+					<i class="border_thumbnail"></i>
+				</div>
+				<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span></em>
+			</div>
+
+		</div><!-- //test_frame -->
+
+		<div class="test_frame" style="background: #ede7f5;">
+
+			<div class="content_product">
+				<div class="area_detail">
+					<span class="label">오늘의 W추천</span>
+					<span class="summary" style="-webkit-box-orient:vertical">W캠퍼스 X LG 그램 응모 EVENT</span>
+					<strong class="title_deal" style="-webkit-box-orient:vertical">[W캠퍼스] 17인치 대화면 그램 쏜다!</strong>
+					<em class="price"><strong class="price_number">0</strong><span class="price_text">원~</span></em>
+				</div>
+				<div class="area_thumbnail type_wide">
+					<div class="thumbnail" style="background-image: url(&quot;http://image.wemakeprice.com/deal/5/770/4367705/8f86f3cde3aece30ce5a755b9e1465f9867a04f9_350_50.jpg?modify=D_1552368056&quot;);"></div>
+					<i class="border_thumbnail"></i>
+				</div>
+				<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span></em>
+			</div>
+			
+		</div><!-- //test_frame -->
+
+		<div class="test_frame" style="background: #fff;">
+
+			<div class="content_product">
+				<div class="area_detail">
+					<span class="label">오늘의 W추천</span>
+					<span class="summary" style="-webkit-box-orient:vertical">W캠퍼스 X LG 그램 응모 EVENT</span>
+					<strong class="title_deal" style="-webkit-box-orient:vertical">[W캠퍼스] 17인치 대화면 그램 쏜다!</strong>
+					<em class="price"><strong class="price_number">0</strong><span class="price_text">원~</span></em>
+				</div>
+				<div class="area_thumbnail type_border">
+					<div class="thumbnail" style="background-image: url(&quot;http://image.wemakeprice.com/deal/5/770/4367705/8f86f3cde3aece30ce5a755b9e1465f9867a04f9_350_50.jpg?modify=D_1552368056&quot;);"></div>
+					<i class="border_thumbnail"></i>
+				</div>
+				<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span></em>
+			</div>
+			
+		</div><!-- //test_frame -->
+
+		<div class="test_frame" style="background: #fff;">
+
+			<div class="content_product">
+				<div class="area_detail">
+					<span class="label">오늘의 W추천</span>
+					<span class="summary" style="-webkit-box-orient:vertical">기간한정! 추가 쿠폰지원!</span>
+					<strong class="title_deal" style="-webkit-box-orient:vertical">[파파디저트] 요거트모찌 요찌요찌 (60g*12EA) 떡 선물 답례떡 식사대용 찹쌀떡</strong>
+					<em class="price"><strong class="price_number">18,000</strong><span class="price_text">원</span></em>
+				</div>
+				<div class="area_thumbnail type_border">
+					<div class="thumbnail" style="background-image: url(&quot;https://view01.wemep.co.kr/wmp-product/5/104/144931045/144931045_large.jpg?1550634605&quot;);"></div>
+					<i class="border_thumbnail"></i>
+				</div>
+				<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span></em>
+			</div>
+
+		</div><!-- //test_frame -->
+
+		<div class="test_frame" style="background: #fff;">
+
+			<div class="content_product">
+				<div class="area_detail">
+					<span class="label">오늘의 W추천</span>
+					<span class="summary" style="-webkit-box-orient:vertical">천안맛집 호두과자</span>
+					<strong class="title_deal" style="-webkit-box-orient:vertical">[맛집직배송] 천안 원조  호두과자</strong>
+					<em class="price"><strong class="price_number">5,000</strong><span class="price_text">원~</span></em>
+				</div>
+				<div class="area_thumbnail type_border">
+					<div class="thumbnail" style="background-image: url(&quot;http://image.wemakeprice.com/deal/1/217/3362171/a9f4074ae65a9312acef6b43af59fa9ef6ff4d1f_350_50.jpg?modify=D_1547443397&quot;);"></div>
+					<i class="border_thumbnail"></i>
+				</div>
+				<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span></em>
+			</div>
+
+		</div><!-- //test_frame -->
+
+		<div class="test_frame" style="background: #73bce9;">
+
+			<div class="content_product">
+				<div class="area_detail">
+					<span class="label" style="background:#1899e9;">오늘의 W추천</span>
+					<span class="summary" style="-webkit-box-orient:vertical;color:#fff;">천안맛집 호두과자</span>
+					<strong class="title_deal" style="-webkit-box-orient:vertical;color:#fff;">[맛집직배송] 천안 원조  호두과자</strong>
+					<em class="price" style="color:#000;"><strong class="price_number">5,000</strong><span class="price_text">원~</span></em>
+				</div>
+				<div class="area_thumbnail type_border">
+					<div class="thumbnail" style="background-image: url(&quot;http://image.wemakeprice.com/deal/1/217/3362171/a9f4074ae65a9312acef6b43af59fa9ef6ff4d1f_350_50.jpg?modify=D_1547443397&quot;);"></div>
+					<i class="border_thumbnail" style="border-color:#fff;opacity:1;"></i>
+				</div>
+				<em class="button" id="button">바로 구매하기<span class="icon_arrow"><i class="icon_arrow_inner" id="icon_arrow_inner"></i></span></em>
+			</div>
+
+		</div><!-- //test_frame -->
+
+		<div class="test_article">
+			<ol>
+				<li>배경이 100% 백색이 아니면 다소 애매한 부분 있음.</li>
+				<li>해상도 높은 이미지 필요. (560px 이상)</li>
+			</ol>
+		</div>
+
+		<div><img class="test_image" src="img/draw.png"></div>
+
+	</div><!-- //app_popup -->
+
+	<div id="test">
+		<button id="area_thumbnail_type_wide" class="button_test">썸네일 와이드</button>
+		<button id="area_thumbnail_type_border" class="button_test">썸네일 테두리</button>
+		<button id="iPhone_5" class="button_test">iPhone 5/SE</button>
+		<button id="iPhone_8" class="button_test">iPhone 6/7/8</button>
+		<button id="iPhone_8_plus" class="button_test">iPhone 6/7/8 Plus</button>
+		<button id="iPhone_x" class="button_test">iPhone X</button>
+		<button id="close_test" class="button_test">닫기</button>
+	</div>
+
+	<script>
+		$('#area_thumbnail_type_wide').click(function() {
+			$('.area_thumbnail').removeClass('type_border');
+			$('.area_thumbnail').addClass('type_wide');
+		});
+		$('#area_thumbnail_type_border').click(function() {
+			$('.area_thumbnail').removeClass('type_wide');
+			$('.area_thumbnail').addClass('type_border');
+		});
+		$('#iPhone_5').click(function() {
+			$('.test_frame').css({'width':'320px','height':'568px'});
+		});
+		$('#iPhone_8').click(function() {
+			$('.test_frame').css({'width':'375px','height':'667px'});
+		});
+		$('#iPhone_8_plus').click(function() {
+			$('.test_frame').css({'width':'414px','height':'736px'});
+		});
+		$('#iPhone_x').click(function() {
+			$('.test_frame').css({'width':'375px','height':'812px'});
+		});
+		$('#close_test').click(function() {
+			$('#test').hide();
+		});
+	</script>
+
+	<style>
+		#wrap {
+			padding: 10px;
+		}
+		.test_frame {
+			position: relative;
+			overflow: hidden;
+			display: inline-block;
+			width: 320px;
+			height: 568px;
+			border: 2px solid #000;
+			margin: 10px;
+		}
+		.test_article {
+			position: relative;
+			overflow: hidden;
+			display: block;
+			border: 2px solid #000;
+			margin: 10px;
+			padding: 10px;
+		}
+		.test_article li {
+			margin-left: 20px;
+			list-style: decimal;
+			font-size: 16px;
+			line-height: 1.3;
+		}
+		.test_image {
+			position: relative;
+			display: inline-block;
+			border: 2px solid #000;
+			margin: 10px;
+		}
+		#test {
+			position: fixed;
+			z-index: 100;
+			bottom: 2px;
+			right: 4px;
+			width: 150px;
+		}
+		.button_test {
+			width: 100%;
+			height: 30px;
+			line-height: 30px;
+			margin: 2px 0;
+			background: rgba(255,0,0,0.4);
+			color: #fff;
+		}
+	</style>
+
+</body>
+</html>

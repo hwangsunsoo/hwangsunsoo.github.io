@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+$color-bg-common: #d9d9d9;
+$color-text-common: #888;
+$color-wmp: #f70800;
+$color-wmp-line: #e60700;
+
+$color-wonder-1: #f754a8;
+$color-wonder-2: #c946ea;
+$color-wonder-3: #ee1ca2;
+$color-wonder-4: #6713d2;
+$color-wonder-grad-1: linear-gradient(145deg, #f754a8, #c946ea);
+$color-wonder-grad-2: linear-gradient(114deg, #ee1ca2, #6713d2);
+
+$color-blue-grad-1: linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));
+$color-blue-grad-2: linear-gradient(to right, rgb(26, 41, 128), rgb(38, 208, 206));
+$color-red-blue-grad-1: linear-gradient(to right, rgb(229, 93, 135), rgb(95, 195, 228));
+$color-red-blue-grad-2: linear-gradient(145deg, rgb(229, 93, 135), rgb(95, 195, 228));
+$color-red-blue-grad-3: linear-gradient(to bottom, rgb(229, 93, 135), rgb(95, 195, 228));
+
+// $header-height: 46px;
+$side-padding-common: 15px;
+// $frame-header-height: 15.6%;
+$frame-header-height: 0;
