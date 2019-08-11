@@ -1,0 +1,94 @@
+.header {
+	position: fixed;
+	z-index: 20;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	background: #fff;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.15);
+}
+.site-title {
+	position: absolute;
+	top: 0;
+	left: 60px;
+	line-height: 50px;
+}
+.site-title-link {
+	font-size: 23px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #000;
+}
+.navbar-button {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 15px;
+	width: 30px;
+	height: 25px;
+	border: solid #000;
+	border-width: 2px 0;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+.navbar-button:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: #000;
+}
+.navbar-button[aria-pressed="true"] {
+	border-color: rgb(242,100,35);
+}
+.navbar-button[aria-pressed="true"]:before {
+	background: rgb(242,100,35);
+}
+.navbar-area {
+	overflow: scroll;
+	position: fixed;
+	z-index: 10;
+	top: 50px;
+	left: -250px;
+	bottom: 0;
+	width: 250px;
+	background: #fff;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.15);
+}
+.navbar-area[aria-expanded="false"] {
+	left: -250px;
+	animation-duration:0.3s;
+	animation-name: slideOut;
+}
+.navbar-area[aria-expanded="true"] {
+	left: 0;
+	animation-duration:0.3s;
+	animation-name: slideIn;
+}
+@keyframes slideIn {
+	0% { left: -250px; }
+	100% { left: 0; }
+}
+@keyframes slideOut {
+	0% { left: 0; }
+	100% { left: -250px; }
+}
+.navbar-list {
+	position: relative;
+}
+.navbar-item {
+	border-bottom: 1px solid #e1e1e1;
+}
+.navbar-link {
+	display: block;
+	padding: 18px 15px;
+	font-size: 15px;
+	color: #000;
+}
+.navbar-link:hover {
+	background: #f1f1f1;
+}
