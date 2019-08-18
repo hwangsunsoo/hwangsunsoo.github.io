@@ -1,12 +1,29 @@
 .thumbnail-area {
+	position: relative;
 	display: block;
 }
+.thumbnail-area:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border: 1px solid rgba(0,0,0,0.05);
+}
 .thumbnail {
-	width:100%;
+	width: 100%;
+	vertical-align: top;
 }
 .video-title {
 	display: block;
+	margin-top: 6px;
+	word-break: break-all;
+	text-align: center;
 }
 .channel-title {
 	display: block;
+	margin-top: 6px;
+	text-align: center;
+	color: #888;
 }

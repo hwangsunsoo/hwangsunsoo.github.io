@@ -13,7 +13,19 @@
     font-size: 1px;
     overflow: hidden;
 }
+.article-area {
+    padding: 15px;
+}
+.article-text {
+    margin: 15px 0;
+    font-size: 18px;
+    text-align: center;
+}
+.article-text a {
+    color: rgb(242,100,35);
+}
 .search-info {
+    margin: 15px 0;
     font-size: 18px;
     text-align: center;
 }
