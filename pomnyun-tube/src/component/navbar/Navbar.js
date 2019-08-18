@@ -20,15 +20,15 @@ class Navbar extends Component {
 		return (
 			<div className="navbar">
 				<header className="header">
-					<h1 className="site-title"><Link className="site-title-link" to="/pomnyun-tube/build/">Pomnyun Tube</Link></h1>
+					<h1 className="site-title"><Link className="site-title-link" to="/pomnyun-tube/build/index.html">Pomnyun Tube</Link></h1>
 					<a className="navbar-button" onClick={this.navbarButtonClick} aria-pressed={this.state.navIsActive}><span className="blind"></span></a>
 				</header>
 				<nav className="navbar-area" aria-expanded={this.state.navIsActive}>
 					{/*  Link 컴포넌트를 이용해 url을 "/"로 변경하고 홈 화면을 렌더링 */}
 					<ul className="navbar-list">
-						<li className="navbar-item"><Link className="navbar-link" to="/pomnyun-tube/build/home">사용방법 안내</Link></li>
-						<li className="navbar-item"><Link className="navbar-link" to="/pomnyun-tube/build/search">키워드 검색</Link></li>
-						<li className="navbar-item"><Link className="navbar-link" to="/pomnyun-tube/build/category/test">카테고리 테스트</Link></li>
+						<li className="navbar-item"><Link className="navbar-link" to="/pomnyun-tube/build/index.html#home">사용방법 안내</Link></li>
+						<li className="navbar-item"><Link className="navbar-link" to="/pomnyun-tube/build/index.html#search">키워드 검색</Link></li>
+						<li className="navbar-item"><Link className="navbar-link" to="/pomnyun-tube/build/index.html#category-test">카테고리 테스트</Link></li>
 					</ul>
 				</nav>
 			</div>

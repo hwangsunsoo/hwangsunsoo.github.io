@@ -6,15 +6,15 @@ export default class Category extends Component {
     state = {
         fullContent: {"id":"lZjDE0auEMY","channel":"","name":""},
         contents: [],
-        keyword: this.props.location.pathname.replace('/category/',''),
+        keyword: this.props.location.pathname.replace('/pomnyun-tube/build/index.html#category-',''),
         error: {}
     };
     componentDidMount() {
         this.fatchSearch(this.state.keyword);
     }
     componentDidUpdate(prevProps, prevState) {
-        if(this.props.location.pathname.replace('/category/','') !== prevProps.location.pathname.replace('/category/',''))
-            this.fatchSearch(this.props.location.pathname.replace('/category/',''));
+        if(this.props.location.pathname.replace('/pomnyun-tube/build/index.html#category-','') !== prevProps.location.pathname.replace('/pomnyun-tube/build/index.html#category-',''))
+            this.fatchSearch(this.props.location.pathname.replace('/pomnyun-tube/build/index.html#category-',''));
     }
     handleFullContentChange = (content) => {
         this.setState({
