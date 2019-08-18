@@ -14,10 +14,10 @@ const Main =()=>(//라우팅할때 url이 중복되는것을 막기 위해서 sw
           "/" 을 가지는 /serach, /view/:id로 이동을 하면 "/"이 포함되어있기 때문에 MainView또한 렌더링이 됩니다.
           이것을 막기 위해서 exact속성을 추가 합니다.
       */}
-			<Route exact path="/" component={MainView}></Route>
-      <Route exact path="/home" component={MainView}></Route>
-      <Route exact path="/search" component={Search}></Route>
-      <Route exact path="/category/:id" component={Category}></Route>
+			<Route exact path="/pomnyunTube/" component={MainView}></Route>
+      <Route exact path="/pomnyunTube/home" component={MainView}></Route>
+      <Route exact path="/pomnyunTube/search" component={Search}></Route>
+      <Route exact path="/pomnyunTube/category/:id" component={Category}></Route>
 		</Switch>
 	)
 
