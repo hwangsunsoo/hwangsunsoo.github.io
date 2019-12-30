@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>video test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="w.css">
+<style>
+.video {
+	background: #000;
+}
+.wrap .area_button {
+	max-width: 100%;
+}
+.wrap .area_button .button {
+	display: inline-block;
+	width: 100px;
+}
+</style>
+</head>
+<body>
+
+<section class="wrap">
+	<article>
+		<h1>Video Test</h1>
+		<p>controls 옵션 사용하지 않고 버튼으로 제어합니다.</p>
+		<video id="myVideo" class="video" width="100%" loop="true" oncontextmenu="return false;" poster="posterimage.png">
+			<source src="flower.mp4" type="video/mp4">
+			Sorry, your browser doesn't support embedded videos.
+		</video>
+		<div class="area_button">
+			<a class="button" id="playBtn">재생</a>
+			<a class="button" id="pausedBtn">정지</a>
+		</div>
+	</article>
+	<hr>
+	<article>
+		<h1>참고자료</h1>
+		<p>
+			<a href="https://developer.mozilla.org/ko/docs/Web/HTML/Element/Video">MDN</a> / 
+			<a href="https://offbyone.tistory.com/344">OffByOne</a>
+		</p>
+	</article>
+</section>
+
+<script>
+$(document).ready(function() {
+	var myVideo = document.getElementById("myVideo"); 
+
+	$("#playBtn").on("click", function() {
+		myVideo.play();
+	});
+	$("#pausedBtn").on("click", function() {
+		myVideo.pause();
+	});
+});
+</script>
+
+</body>
+</html>
