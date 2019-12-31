@@ -66,11 +66,11 @@
 		<p>스와이프 동작을 붙여서 테스트합니다.</p>
 		<div class="vod-box-big swiper-container">
 			<ul class="swiper-wrapper">
-				<li class="swiper-slide"><video id="myVideo1" class="video_swipe" controls loop="true" oncontextmenu="return false;"><source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" type="video/mp4"></video></li>
-				<li class="swiper-slide"><video id="myVideo2" class="video_swipe" controls loop="true" oncontextmenu="return false;"><source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4"></video></li>
-				<li class="swiper-slide"><video id="myVideo3" class="video_swipe" controls loop="true" oncontextmenu="return false;"><source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4"></video></li>
-				<li class="swiper-slide"><video id="myVideo4" class="video_swipe" controls loop="true" oncontextmenu="return false;"><source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4"></video></li>
-				<li class="swiper-slide"><video id="myVideo5" class="video_swipe" controls loop="true" oncontextmenu="return false;"><source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4"></video></li>
+				<li class="swiper-slide"><video id="mainVideo-1" class="video_swipe" controls loop="true" oncontextmenu="return false;"><source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" type="video/mp4"></video></li>
+				<li class="swiper-slide"><video id="mainVideo-2" class="video_swipe" controls loop="true" oncontextmenu="return false;"><source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4"></video></li>
+				<li class="swiper-slide"><video id="mainVideo-3" class="video_swipe" controls loop="true" oncontextmenu="return false;"><source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4"></video></li>
+				<li class="swiper-slide"><video id="mainVideo-4" class="video_swipe" controls loop="true" oncontextmenu="return false;"><source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4"></video></li>
+				<li class="swiper-slide"><video id="mainVideo-5" class="video_swipe" controls loop="true" oncontextmenu="return false;"><source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4"></video></li>
 			</ul>
 		</div>
 		<div class="vod-box-thumb swiper-container">
@@ -115,25 +115,28 @@ $(document).ready(function() {
 
 <script>
 // taling24 리스트 슬라이드
+var vodSlides = 5;
 var vodThumbs = new Swiper('.vod-box-thumb', {
 	spaceBetween: 0,
 	centeredSlides: true,
-	slidesPerView: 5,
+	slidesPerView: vodSlides,
 	touchRatio: 0.4,
 	loop: true,
-	loopedSlides: 5,
+	loopedSlides: vodSlides,
 });
 var vodTop = new Swiper('.vod-box-big', {
 	spaceBetween: 0,
 	slidesPerView: 1,
 	loop: true,
-	loopedSlides: 5
+	loopedSlides: vodSlides,
 });
 vodTop.controller.control = vodThumbs;
 vodThumbs.controller.control = vodTop;
 
+var vodActiveSlide;
 vodThumbs.on('slideChange', function () {
-  console.log('activeIndex: '+vodThumbs.activeIndex);
+	vodActiveSlide = vodThumbs.activeIndex - (vodSlides - 1);
+	console.log('activeIndex: '+vodActiveSlide);
 });
 </script>
 
