@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>video test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="css/w.css">
+<style>
+.wrap {
+	max-width: 100%;
+	padding: 30px 0;
+}
+.wrap .area_button {
+	max-width: 100%;
+}
+.wrap .area_button .button {
+	display: inline-block;
+	margin-top: 4px;
+	width: 120px;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<section class="wrap">
+	<video id="kollus_player_Html5_api" controls width="800" height="500" class="vjs-tech" preload="none" playsinline="" src="https://taling-test.video.kr.kollus.com/kr/media-file.mp4?_s=f97e9a46823f1aaa970330cf8e6388e92e11607b82f133929fa8fd8b3176fd1dbc5cbe0a19af0c06dc6b707093e51cabca920fcfe0dc4cdb86b63000f57e8abed189c430373f8cb49ca3b8a69fd69f787e95fda6c534e3980f06642b5afd76d6cd86526e6018923e1fc91cf80d0028897ac47f63465a72835c16e942f9205fe4e0243537c58b631eba0687b1d4d35cfa4455c043a9855d98fcee41f968af2d6f1cbe36d0a5f94a66a849496495d73a7be6955b199b14bde1389624cd13fbfdf9cb794d6fccc73450c9ea970dfae2e8e2172d06b8a02a3591139e09acf301e77cb54b7952adaea3de5a604bd17c8c942368e0d61e2b6b25f8c12e8337e38bd27a87822f930c6ea62f7cdbb10d684c6eaff42879ef69edf78a16e08ee9e03396f6e1fad2d055417d5ed78d47f080be300ba06b90438ab491edd735d7c7d39c807edec95605a01c606507f85d53adbf7738" webkit-playsinline="" poster="" style="object-fit: contain;"></video>
+	<div class="area_button">
+		<input id="playTime" type="text" value="01:00">
+		<a class="button" id="playBtn">재생</a>
+		<a class="button" id="pausedBtn">정지</a>
+	</div>
+</section>
+
+<script>
+$(document).ready(function() {
+	var myVideo = document.getElementById("kollus_player_Html5_api"); 
+
+	$("#playBtn").on("click", function() {
+		var myPlayTime = document.getElementById("playTime").value;
+		var myPlayTimeMin = Number(myPlayTime.substring(0,2)) * 60;
+		var myPlayTimeSec = Number(myPlayTime.substring(3,5));
+		var myPlayTimeResult = myPlayTimeMin + myPlayTimeSec;
+		console.log(myPlayTimeResult);
+		myVideo.currentTime = myPlayTimeResult;
+		myVideo.play();
+	});
+	$("#pausedBtn").on("click", function() {
+		myVideo.pause();
+	});
+});
+</script>
+
+</body>
+</html>
