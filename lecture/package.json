@@ -19,7 +19,7 @@
   "dependencies": {
     "browser-sync": "^2.18.13",
     "cheerio": "^1.0.0-rc.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-connect": "^5.0.0",
     "gulp-gm": "0.0.8",
